@@ -73,5 +73,5 @@ __pypackages__/
 
 
 ### Web ###
-
+config.json
 # End of https://www.toptal.com/developers/gitignore/api/pythonvanilla,web,dotenv
