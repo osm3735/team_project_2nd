@@ -1,0 +1,155 @@
+
+
+/* ─── 슬라이드 ───────────────────────── */
+.slider_position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  flex-direction: column;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.slider {
+  display: flex;
+  width: 100%;
+  height: 300px;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+}
+
+.slider img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  scroll-snap-align: start;
+  cursor: pointer;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* ✅ 슬라이드3번 이미지(blakewisz.jpg) 확대 스타일 추가 */
+.slider img[alt="슬라이드3"] {
+  transform: scaleX(1.3);     /* 15% 확대 */
+  transition: transform 0.3s; /* 부드러운 효과 */
+  z-index: 1;
+}
+
+#sliderDots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin: 0 5px;
+  background-color: gray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: black;
+}
+
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  font-size: 30px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.slide-btn.left {
+  left: 10px;
+}
+
+.slide-btn.right {
+  right: 10px;
+}
+
+/* ─── 장바구니 ───────────────────────── */
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #FF7043;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* ─── 카드 레이아웃 ─────────────────── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.card-label {
+  padding: 10px;
+  font-size: 0.85rem;
+  color: #666;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: right;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-desc {
+  padding: 15px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* ─── 푸터 ───────────────────────────── */
+footer {
+  background-color: #3E2723; /* 다크 브라운 */
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
