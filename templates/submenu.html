@@ -2,116 +2,137 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>메뉴 | 수제커피브루</title>
-   <link rel="stylesheet" href="../static/css/submenu.css">
-         <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-   
-    <link rel="stylesheet" href="../static/css/footer.css">
-   
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> 원두/생두</title>
 
-</head>
-
+  <link rel="stylesheet" href="../static/css/common.css" />
+  <link rel="stylesheet" href="../static/css/header.css" />
+  <link rel="stylesheet" href="../static/css/footer.css" />
+  <link rel="stylesheet" href="../static/css/goodsorder.css">
 </head>
 
 <body>
+  <header>
+    <div class="header-inner">
+      <h1>이른 아침</h1>
 
-    <header>
-        <h1><img src="../static/img/K-038.png"> 이른 아침</h1>
-        <nav>
-            <a href="./index.html">홈</a>
-            <a href="./submenu.html" class="active">메뉴</a>
-            <a href="./findstore.html">매장 찾기</a>
-            <a href="./board.html">자유 게시판</a>
-        </nav>
-        <nav>
-            <a href="./login.html">로그인</a>
-            <a href="./join_page.html">회원 가입</a>
-            <a href="./dlivery.html">배송현황</a>
-            <a href="./order_tracking.html">주문조회</a>
-            <span class="cart-icon">장바구니🛒<span class="cart-count">0</span></span>
-        </nav>
-    </header>
+      <nav>
+        <a href="./index.html">Home</a>
+        <a href="./early_morning_coffee.html">아침을 여는 이야기</a>
+        <a href="./submenu.html">원두/생두</a>
+        <a href="./goods_order.html">과일/시럽</a>
+        <a href="./etc_order.html">커피용품</a>
+        <a href="./coffebeen_order.html">기타용품</a>
+        <a href="./findstore.html">매장 찾기</a>
+      </nav>
 
+      <div class="top-right-menu">
+        <a href="./login.html">로그인</a>
+        <span class="divider">|</span>
+        <a href="./order_tracking.html">주문조회</a>
+        <span class="divider">|</span>
+        <span class="divider">|</span>
+        <a href="./cart.html">장바구니🛒</a>
+        <a href="./dlivery.html">배송현황</a>
+      </div>
+    </div>
+  </header>
 
-    <div class="menu-container">
-        <!-- Coffee Box -->
-        <div class="menu-box">
-            <h2>커피</h2>
-            <div class="coffee" class="menu-item">
-                <h3>브루드 아메리카노</h3>
-                <p><a href="./menu_order.html"><img src="../img/K-070.png"></a></p>
-              
-            </div>
-            <div class="coffee" class="menu-item">
-                <h3>핸드드립 콜드브루</h3>
-                <p><a href="./menu_order.html"><img src="../img/K-071.png"></a></p>
-              
-            </div>
-        </div>
-
-        <!-- Beans Box -->
-        <div class="menu-box">
-            <h2>원두</h2>
-            <div class="coffeebeen" class="menu-item">
-                <h3>colombia finca el paraiso</h3>
-                <p><a href="./coffeebeen.html"><img src="../img/K-010.jpg"></a></p>
-               
-            </div>
-            <div class="coffeebeen" class="menu-item">
-                <h3> honduras el puente</h3>
-                <p><a href="./coffeebeen.html"><img src="../img/K-009.jpg"></a></p>
-                
-            </div>
-        </div>
-
-        <!-- Goods Box -->
-        <div class="menu-box">
-            <h2>굿즈</h2>
-            <div class="goods" class="menu-item">
-                <h3>커피 시럽</h3>
-               <p><a href="./goods_order.html"><img src="../img/K-013.jpg"></a></p>
-               
-            </div>
-            <div class="goods" class="menu-item">
-                <h3>커피 포트</h3>
-            <p><a href="./goods_order.html"><img src="../img/K-014.jpg"></a></p>
-                
-            </div>
-            <div class="goods" class="menu-item">
-                <h3>텀블러</h3>
-           <a href="./goods_order.html"><img src="../img/K-015.jpg"></a></p>
-               
-            </div>
-        </div>
-
-        <!-- Etc Box -->
-        <div class="menu-box">
-            <h2>기타</h2><br>
-            <div class="etc" class="menu-item">
-                <h3>커피 스틱</h3>
-                <a href="./etc_order.html"><img src="../img/K-016.jpg"></a></p>
-              
-            </div>
-            <div class="etc" class="menu-item">
-                <h3>빨대</h3>
-               <a href="./etc_order.html"><img src="../img/K-018.jpg"></a></p>
-                
-            </div>
-            <div class="etc" class="menu-item">
-                <h3>컵홀더</h3>
-              <a href="./etc_order.html"><img src="../img/K-019.jpg"></a></p>
-                
-            </div> 
-        </div>
+  </nav>
+  </header>
+  <main class="card-grid">
+    <!-- 카드 1: 커피원픽 – 헤베커피 -->
+    <div class="card">
+      <div class="card-label">커피원픽</div>
+      <img src="img/coffee1.jpg" alt="헤베커피" />
+      <p class="card-desc">
+        <strong>헤베커피</strong><br>
+        • 재배지: 에티오피아 예가체프<br>
+        • 풍미: 플로랄한 아로마와 시트러스 산미가 어우러진 깔끔한 바디<br>
+        • 추천 추출: 핸드드립, 에스프레소
+      </p>
+      <button class="purchase-btn">구매하기</button>
     </div>
 
+    <!-- 카드 2: 커피원픽 – 언럭스 세트 -->
+    <div class="card">
+      <div class="card-label">원두</div>
+      <img src="img/coffee2.jpg" alt="언럭스 세트" />
+      <p class="card-desc">
+        <strong>언럭스 세트</strong><br>
+        • 재배지: 에티오피아 시다마 알로 타미루<br>
+        • 풍미: 베리류와 자스민 향이 조화된 밝은 산미<br>
+        • 구성: 드립백 8개입 패키지
+      </p>
+      <button class="purchase-btn">구매하기</button>
+    </div>
 
-    <footer>
-        &copy; 2025 수제커피브루 | 경기도 커피시 향기구 아라비카로 100
-    </footer>
+    <!-- 카드 3: 머신원픽 – 아우틴 나노 -->
+    <div class="card">
+      <div class="card-label">원두</div>
+      <img src="img/machine1.jpg" alt="아우틴 나노" />
+      <p class="card-desc">
+        <strong>아우틴 나노</strong><br>
+        • 재배지: 콜롬비아 나리뇨 지역<br>
+        • 풍미: 카라멜과 다크 초콜릿 노트, 부드러운 바디<br>
+        • 머신 최적화: 에스프레소 전용 로스팅
+      </p>
+      <button class="purchase-btn">구매하기</button>
+    </div>
+
+    <!-- 카드 4: 머신원픽 – 스테드패스트 -->
+    <div class="card">
+      <div class="card-label">원두</div>
+      <img src="img/machine2.jpg" alt="스테드패스트" />
+      <p class="card-desc">
+        <strong>스테드패스트</strong><br>
+        • 재배지: 케냐 키암부 지역<br>
+        • 풍미: 강한 베리 산미와 와인 같은 과일 향미, 깔끔한 피니시<br>
+        • 머신 최적화: 시럽 같은 단맛 강조 로스팅
+      </p>
+      <button class="purchase-btn">구매하기</button>
+    </div>
+
+    <!-- 카드 5: 커피생두 – 에티오피아 알로 타미루 -->
+    <div class="card">
+      <div class="card-label">원두</div>
+      <img src="img/green1.jpg" alt="에티오피아 생두" />
+      <p class="card-desc">
+        <strong>에티오피아 알로 타미루</strong><br>
+        • 품종: Heirloom<br>
+        • 가공: 내추럴<br>
+        • 풍미: 블루베리, 자몽, 꽃향이 돋보이는 복합적인 아로마
+      </p>
+      <button class="purchase-btn">구매하기</button>
+    </div>
+
+    <!-- 카드 6: 커피생두 – 파나마 블랙문 팜 -->
+    <div class="card">
+      <div class="card-label">원두두</div>
+      <img src="img/green2.jpg" alt="블랙문팜" />
+      <p class="card-desc">
+        <strong>파나마 블랙문 팜</strong><br>
+        • 품종: Geisha<br>
+        • 가공: 워시드<br>
+        • 풍미: 재스민, 유자, 열대과일의 우아한 꽃향과 달콤한 여운
+      </p>
+      <button class="purchase-btn">구매하기</button>
+    </div>
+  </main>
+
+
+  </main>
+
+  <footer>
+    <p>© 2025 이른 아침 커피브루 | 경기도 커피시 향기구 아라비카로 100</p>
+  </footer>
+
+</body>
+
+</html>
+
+
 
 </body>
 

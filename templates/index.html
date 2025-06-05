@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>수제커피브루 - 홈</title>
+  <title>수제커피브루 - 홈</title>
   <link rel="stylesheet" href="../static/css/common.css" />
   <link rel="stylesheet" href="../static/css/header.css" />
   <link rel="stylesheet" href="../static/css/index.css" />
   <link rel="stylesheet" href="../static/css/footer.css" />
-  <link rel="stylesheet" href="../static/css/early.css"/>
+  <link rel="stylesheet" href="../static/css/early.css" />
+  <link rel="stylesheet" href="..static/css/cart.css" />
 </head>
 
 <body>
@@ -17,7 +19,7 @@
       <h1>이른 아침</h1>
 
       <nav>
-        
+
         <a href="./early_morning_coffee.html">회사소개</a>
         <a href="./submenu.html">원두/생두</a>
         <a href="./goods_order.html">과일/시럽</a>
@@ -32,41 +34,38 @@
         <a href="./tracking.html">주문조회</a>
         <span class="divider">|</span>
         <span class="divider">|</span>
-    <a href="./order_cart.htmll">장바구니🛒</a>
+        <a href="./order_cart.html">장바구니🛒</a>
         <a href="./dlivery.html">배송현황</a>
       </div>
     </div>
   </header>
+  
+  <!-- ✅ 본문 중간에 슬라이드 추가 -->
+  <div class="slider_position">
+    <div class="slider-wrapper">
+      <div class="slider" id="slider">
 
-      </nav>
+        <img src="../static/img/greenbean.png" alt="슬라이드1" />
+
+        <img src="../static/img/greenbean.png2.png" alt="슬라이드2" />
+
+        <img src="../static/img/Outin.png" alt="슬라이드3" />
+
+        <img src="../static/img/unlux.png" alt="슬라이드4" />
+        <img src="../static/img/unspecialty.jpeg" alt="슬라이드5" />
+        <img src="../static/img/test-0528-(14).jpg" alt="슬라이드6" />
+      </div>
     </div>
-  </header>
-<!-- ✅ 본문 중간에 슬라이드 추가 -->
-<div class="slider_position">
-  <div class="slider-wrapper">
-    <div class="slider" id="slider">
-      
-      <img src="../static/img/greenbean.png" alt="슬라이드1" />
-    
-      <img src="../static/img/greenbean.png2.png" alt="슬라이드2" />
-    
-     <img src="../static/img/Outin.png" alt="슬라이드3" />
 
-      <img src="../static/img/unlux.png" alt="슬라이드4" />
-      <img src="../static/img/unspecialty.jpeg" alt="슬라이드5" />
-      <img src="../static/img/test-0528-(14).jpg" alt="슬라이드6" />
+    <div id="sliderDots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
   </div>
-
-  <div id="sliderDots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-</div>
 
   <main class="card-grid">
     <div class="card">
@@ -99,12 +98,12 @@
       <img src="../static/img/green2.jpg" alt="블랙문팜" />
       <p class="card-desc">[커피 생두] 파나마 블랙 문 2024 BoP 옥션 랏</p>
     </div>
-     <div class="card">
+    <div class="card">
       <div class="card-label">커피원픽</div>
       <img src="../static/img/coffee1.jpg" alt="헤베커피" />
       <p class="card-desc">[6월 커피 원픽] 헤베커피 (6/1 ~ 6/30)</p>
     </div>
-    
+
   </main>
 
   <footer>
@@ -114,4 +113,5 @@
   <!-- ✅ 슬라이드 작동 스크립트 -->
   <script src="../static/js/img_slide.js"></script>
 </body>
+
 </html>
