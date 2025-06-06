@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../팀프로젝트"
+		},
+		{
+			"path": "../../team_project_2nd_osm"
+		},
+		{
+			"path": "../../HD_1104-main (1)"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501,
+		"liveServer.settings.multiRootWorkspaceName": "team_project_2nd"
+	}
+}

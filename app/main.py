@@ -24,4 +24,4 @@ async def index(request: Request):
 
 @app.get("/login.html", response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse("findstore.html", {"request": request})
+    return templates.TemplateResponse("login.html", {"request": request})
