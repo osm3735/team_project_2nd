@@ -7,9 +7,11 @@
   <title> 원두/생두</title>
 
   <link rel="stylesheet" href="../static/css/common.css" />
-  <link rel="stylesheet" href="../static/css/header.css" />
+  <link rel="stylesheet" href="../static/css/header3.css" />
+  <link rel="stylesheet" href="../static/css/index.css" />
   <link rel="stylesheet" href="../static/css/footer.css" />
-  <link rel="stylesheet" href="../static/css/goodsorder.css">
+  <link rel="stylesheet" href="../static/css/orderform.css">
+
 </head>
 
 <body>
@@ -18,12 +20,12 @@
       <h1>이른 아침</h1>
 
       <nav>
-        <a href="./index.html">Home</a>
+
         <a href="./early_morning_coffee.html">아침을 여는 이야기</a>
         <a href="./submenu.html">원두/생두</a>
         <a href="./goods_order.html">과일/시럽</a>
-        <a href="./etc_order.html">커피용품</a>
-        <a href="./coffebeen_order.html">기타용품</a>
+        <a href="./coffebeen_order.html">커피용품</a>
+        <a href="./etc_order.html">기타용품</a>
         <a href="./findstore.html">매장 찾기</a>
       </nav>
 
@@ -41,84 +43,184 @@
 
   </nav>
   </header>
+
+
+
+
+
+
+  </div>
+
+  <h1 class="main-title">Coffee Beens</h1>
   <main class="card-grid">
-    <!-- 카드 1: 커피원픽 – 헤베커피 -->
-    <div class="card">
+
+    <!-- 카드 1: 커피원픽 – bella donovan -->
+    <div class="card" data-name="bella donovan" data-price="4000" data-img="../static/img/K-009.jpg">
       <div class="card-label">커피원픽</div>
-      <img src="img/coffee1.jpg" alt="헤베커피" />
-      <p class="card-desc">
-        <strong>헤베커피</strong><br>
-        • 재배지: 에티오피아 예가체프<br>
-        • 풍미: 플로랄한 아로마와 시트러스 산미가 어우러진 깔끔한 바디<br>
-        • 추천 추출: 핸드드립, 에스프레소
-      </p>
-      <button class="purchase-btn">구매하기</button>
+      <img src="../static/img/K-009.jpg" alt="bella donovan">
+
+      <h3><strong>bella donovan</h3></strong><br>
+      • roasting : 미디엄<br>
+      • flavorNotes = 딸기, 밀크초콜릿, 몰트<br>
+      • 에티오피아와 수마트라 블렌드 , 밸런스 좋아서 핸드드립, 브루잉용으로 인기
+
+      <h5><strong>₩4,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
     </div>
 
-    <!-- 카드 2: 커피원픽 – 언럭스 세트 -->
-    <div class="card">
+    <!-- 카드 2: 커피원픽 – colombia finca el paraiso -->
+    <div class="card" data-name="colombia finca el paraiso" data-price="4500" data-img="../static/img/K-010.jpg">
       <div class="card-label">원두</div>
-      <img src="img/coffee2.jpg" alt="언럭스 세트" />
-      <p class="card-desc">
-        <strong>언럭스 세트</strong><br>
-        • 재배지: 에티오피아 시다마 알로 타미루<br>
-        • 풍미: 베리류와 자스민 향이 조화된 밝은 산미<br>
-        • 구성: 드립백 8개입 패키지
-      </p>
-      <button class="purchase-btn">구매하기</button>
+      <img src="../static/img/K-010.jpg" alt="colombia finca el paraiso">
+      <h3><strong> finca el paraiso</strong></h3><br>
+      • roasting : 라이트<br>
+      • flavorNotes = 자몽, 장미, 복숭아<br>
+      • 꽃향기가 도는 산미와 과일향의 조화, 힙스터 감성 뿜뿜<br>
+      <p>
+      <h5><strong>₩4,500</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
     </div>
 
-    <!-- 카드 3: 머신원픽 – 아우틴 나노 -->
-    <div class="card">
+    <!-- 카드 3: 머신원픽 – honduras el puente -->
+    <div class="card" data-name="honduras el puente" data-price="5000" data-img="../static/img/K-020.jp">
       <div class="card-label">원두</div>
-      <img src="img/machine1.jpg" alt="아우틴 나노" />
-      <p class="card-desc">
-        <strong>아우틴 나노</strong><br>
-        • 재배지: 콜롬비아 나리뇨 지역<br>
-        • 풍미: 카라멜과 다크 초콜릿 노트, 부드러운 바디<br>
-        • 머신 최적화: 에스프레소 전용 로스팅
-      </p>
-      <button class="purchase-btn">구매하기</button>
+      <img src="../static/img/K-020.jpg" alt="honduras el puente">
+      <h3><strong>honduras el puente</h3></strong><br>
+      • roasting : 라이트<br>
+      • flavorNotes = 청사과, 설탕시럽, 은은한 향신료<br>
+      • 덴마크 대표 미니멀 감성 로스터리, 맛도 미니멀하게 깔끔
+      <p>
+      <h5><strong>₩5,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
     </div>
 
-    <!-- 카드 4: 머신원픽 – 스테드패스트 -->
-    <div class="card">
+    <!-- 카드 4: 머신원픽 – cup of excellence -->
+    <div class="card" data-name="cup of excellence" data-price="6000" data-img="../static/img/K-021.jpg">
       <div class="card-label">원두</div>
-      <img src="img/machine2.jpg" alt="스테드패스트" />
-      <p class="card-desc">
-        <strong>스테드패스트</strong><br>
-        • 재배지: 케냐 키암부 지역<br>
-        • 풍미: 강한 베리 산미와 와인 같은 과일 향미, 깔끔한 피니시<br>
-        • 머신 최적화: 시럽 같은 단맛 강조 로스팅
-      </p>
-      <button class="purchase-btn">구매하기</button>
+      <img src="../static/img/K-021.jpg" alt="cup of excellence" />
+
+      <h3><strong>cup of excellence</h3></strong><br>
+      • roasting : 라이트<br>
+      • flavorNotes = 열대과일, 재스민, 청포도<br>
+      • COE(컵오브 엑셀렌스)수상작 품질부터 다른 산미풍 커피의 정점
+
+      <h5><strong>₩6,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
     </div>
 
-    <!-- 카드 5: 커피생두 – 에티오피아 알로 타미루 -->
-    <div class="card">
+    <!-- 카드 5: 커피생두 – el paraiso double anaerobic washed -->
+    <div class="card" data-name="el paraiso double anaerobic washed" data-price="7000"
+      data-img="../static/img/K-022.jpg">
       <div class="card-label">원두</div>
-      <img src="img/green1.jpg" alt="에티오피아 생두" />
-      <p class="card-desc">
-        <strong>에티오피아 알로 타미루</strong><br>
-        • 품종: Heirloom<br>
-        • 가공: 내추럴<br>
-        • 풍미: 블루베리, 자몽, 꽃향이 돋보이는 복합적인 아로마
-      </p>
-      <button class="purchase-btn">구매하기</button>
+      <img src="../static/img/K-022.jpg" alt="el paraiso double anaerobic washed" />
+
+      <h3><strong>el paraiso double <br>anaerobic washed</h3></strong>
+      • roasting : 라이트<br>
+      • flavorNotes = 딸기 요구르트,장미,열대과일<br><br>
+      • 향미가 미쳤어요, 실험적이고 독보적<br>
+
+      <h5><strong>₩7,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
     </div>
 
-    <!-- 카드 6: 커피생두 – 파나마 블랙문 팜 -->
-    <div class="card">
-      <div class="card-label">원두두</div>
-      <img src="img/green2.jpg" alt="블랙문팜" />
-      <p class="card-desc">
-        <strong>파나마 블랙문 팜</strong><br>
-        • 품종: Geisha<br>
-        • 가공: 워시드<br>
-        • 풍미: 재스민, 유자, 열대과일의 우아한 꽃향과 달콤한 여운
-      </p>
-      <button class="purchase-btn">구매하기</button>
+    <!-- 카드 6: 커피생두 – ethiopia yirgacheffe -->
+    <div class="card" data-name="ethiopia yirgacheffe" data-price="7500" data-img="../static/img/K-023.jpg">
+      <div class="card-label">원두</div>
+      <img src="../static/img/K-023.jpg" alt="ethiopia yirgacheffe" />
+
+      <h3><strong>ethiopia yirgacheffe</h3></strong><br>
+      • roasting : 없음<br>
+      • flavorNotes = 레몬,베리류,꽃향기,복숭아<br>
+      • 예가체프는 에티오피아의 대표적 커피재배지역으로, 과일향이 두드러지는 커피로 유명합니다
+
+      <h5><strong>₩7,500</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
     </div>
+
+    <!-- 카드 6: 커피생두 – kenya aa -->
+    <div class="card" data-name="kenya aa" data-price="6000" data-img="../static/img/K-024.jpg">
+      <div class="card-label">원두</div>
+      <img src="../static/img/K-024.jpg" alt="kenya aa" />
+
+      <h3><strong>kenya aa</h3></strong><br>
+      • roasting : 없음<br>
+      • flavorNotes = 블랙베리, 자몽, 시트러스스<br>
+      • 높은 고도에서 자란 아라비카 커피로 유명하며, 뛰어난 과일향과 풍부한 산미를 자랑합니다.
+
+      <h5><strong>₩6,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
+    </div>
+
+    <!-- 카드 6: 커피생두 – brazil santos -->
+    <div class="card" data-name="brazil santos" data-price="6000" data-img="../static/img/K-025.jpg">
+      <div class="card-label">원두</div>
+      <img src="../static/img/K-025.jpg" alt="brazil santos" />
+
+      <h3><strong>brazil santos</h3></strong><br>
+      • roasting : 없음<br>
+      • flavorNotes = 초콜릿, 캐러맬, 견과류<br><br>
+      • 부드럽고 균형잡힌 맛이 특징으로 우유와 잘 어울립니다<br>
+      <p>
+      <h5><strong>₩6,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
+    </div>
+
+    <!-- 카드 6: 커피생두 – colombia supremo -->
+    <div class="card" data-name="colombia supremo" data-price="6000" data-img="../static/img/K-026.jpg">
+      <div class="card-label">원두</div>
+      <img src="../static/img/K-026.jpg" alt="colombia supremo" />
+
+      <h3><strong>colombia supremo</h3></strong><br>
+      • roasting : 없음<br>
+      • flavorNotes = 사과, 캐러멜,초콜릿, 약간의 견과류 향<br>
+      • 부드럽고 균형잡힌 맛으로 유명하며 우유와 함께 할때 맛이 더 부각됩니다.
+      <p>
+      <h5><strong>₩6,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
+    </div>
+
+    <!-- 카드 6: 커피생두 – ethiopia yirgacheffe washed -->
+    <div class="card" data-name="ethiopia yirgacheffe washed" data-price="8000" data-img="../static/img/K-027.jpg">
+      <div class="card-label">원두</div>
+      <img src="../static/img/K-027.jpg" alt="ethiopia yirgacheffe washed" />
+
+      <h3><strong>ethiopia <br>yirgacheffe washed</h3></strong>
+      • roasting : 없음<br>
+      • flavorNotes = 재스민 꽃향기,레몬,베리류,복숭아<br>
+      • 핸드드립에 가장 잘맞는 고급 원두 중 하나로, 특유의 밝은 산미와 꽃향기가 인상적
+      <p>
+      <h5><strong>₩8,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
+    </div>
+
+    <!-- 카드 6: 커피생두 – 로브스타 -->
+    <div class="card" data-name="로브스타" data-price="6000" data-img="../static/img/K-028.jpg">
+      <div class="card-label">원두</div>
+      <img src="../static/img/K-028.jpg" alt="로브스타" />
+
+      <h3><strong>로브스타</strong></h3><br>
+      • roasting : 미디엄 다크<br>
+      • flavorNotes = 다크초콜릿, 너트, 카라멜<br>
+      • 묵직한 바디감과 은은한 스모키함 , 라떼 용으로도 인기
+      <p>
+      <h5><strong>₩6,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
+    </div>
+
+    <!-- 카드 6: 커피원액 – 이른 아침 시그니처 -->
+    <div class="card" data-name="이른 아침 시그니처" data-price="10000" data-img="../static/img/K-011.jpg">
+      <div class="card-label">커피 원액</div>
+      <img src="../static/img/K-011.jpg" alt="이른 아침 시그니처" />
+
+      <h3><strong>이른 아침 시그니처</strong></h3><br>
+      • roasting : 미디엄 라이트<br>
+      • flavorNotes = 너트, 꽃향기, 초콜릿<br><br>
+      • 이른 아침이 자신있게 내놓은 깊은 산미와 꽃향기로 아침을 깨우는 커피<br>
+      <p>
+      <h5><strong>₩10,000</h5></strong>
+      <p class="card-desc"><button class="add-to-cart">구매하기</button></p>
+    </div>
+
   </main>
 
 
@@ -133,7 +235,7 @@
 </html>
 
 
-
+<script src="../static/js/cart.js"></script>
 </body>
 
 </html>
