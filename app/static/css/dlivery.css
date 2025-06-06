@@ -1,365 +1,609 @@
-  main {
-      flex: 1;
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
+/* ─────────────────────────────────────────────────────────────────── */
+/*                        전체 페이지용 CSS 예시                          */
+/* ─────────────────────────────────────────────────────────────────── */
+
+/* 1. 기본 리셋 및 폰트 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  /* 화면 높이를 100%로 채워서 flex 레이아웃이 작동하도록 설정 */
+  height: 100%;
+  width: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+
+  /* Sticky Footer를 위한 flex 설정 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. 헤더, 메인, 푸터가 세로로 쌓이게끔 만듭니다 */
+header {
+  background-color: #D2691E;
+  /* 오렌지 브라운 계열 배경 */
+  color: #000000;
+  /* 필요한 경우 높이 고정이나 여백을 추가하세요 */
+}
+
+main {
+  /* 'flex: 1'을 줘서, 화면에 남은 세로 공간을 모두 차지하도록 합니다.
+     -> 내용이 짧으면 main이 늘어나서 푸터를 화면 하단으로 밀어냅니다. */
+  flex: 1;
+
+  /* 메인 콘텐츠에 여백을 줄 때 아래 padding만 남겨두세요.
+     (푸터가 fixed 상태가 아니므로 따로 바텀 패딩은 필요 없습니다) */
+  padding: 30px 20px;
+}
+
+
+
+
+
+/* 3. 푸터는 문서 흐름대로 위치하도록 단순히 스타일만 적용 */
+footer {
+  background-color: #D2691E;
+  /* 오렌지 브라운 계열 배경 */
+  color: #000000;
+  /* 검정색 텍스트 */
+  height: 60px;
+  /* 원하는 높이로 조정 */
+  /* position: fixed나 position: absolute를 완전히 제거하세요 */
+}
+
+/* 4. 푸터 내부 중앙 정렬 */
+.footer-inner {
+  max-width: 1200px;
+  /* 콘텐츠 정렬 폭에 맞춰 조정 */
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  /* 세로 중앙 정렬 */
+  justify-content: center;
+  /* 가로 중앙 정렬 */
+}
+
+.footer-inner p,
+.footer-inner strong {
+  color: #000000;
+  /* 푸터 텍스트를 검정색으로 통일 */
+  font-size: 0.9rem;
+}
+
+/* 푸터 텍스트 사이 구분자 스타일(선택 사항) */
+.footer-inner strong+span,
+.footer-inner span+strong {
+  margin: 0 8px;
+  color: #000000;
+  /* 검정색 구분자 */
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                          헤더 & 내비게이션 스타일                       */
+/* ─────────────────────────────────────────────────────────────────── */
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-inner h1 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.header-inner nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1;
+  margin-left: 40px;
+}
+
+.header-inner nav a {
+  color: #ffffff;
+  font-size: 1rem;
+  margin-right: 30px;
+  transition: color 0.2s;
+}
+
+.header-inner nav a:hover {
+  color: #FFD54F;
+}
+
+/* 우측 상단 메뉴(로그인/게시판/장바구니/배송현황) */
+.top-right-menu {
+  display: flex;
+  align-items: center;
+}
+
+.top-right-menu a {
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-left: 15px;
+  transition: color 0.2s;
+}
+
+.top-right-menu a:hover {
+  color: #FFD54F;
+}
+
+.top-right-menu .divider {
+  color: #ffffff;
+  margin: 0 8px;
+  user-select: none;
+}
+
+/* 현재페이지(배송현황) 강조 */
+.top-right-menu a[href$="dlivery.html"] {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                          메인 섹션 스타일                            */
+/* ─────────────────────────────────────────────────────────────────── */
+
+/* 배송 조회 박스 */
+.delivery-section {
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 30px 40px;
+}
+
+/* 섹션 타이틀 */
+.delivery-section h2 {
+  font-size: 2rem;
+  color: #3E2723;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* 배송 조회 폼 */
+.delivery-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.delivery-form label {
+  font-size: 1rem;
+  color: #3E2723;
+}
+
+.delivery-form input[type="text"] {
+  flex: 1 1 300px;
+  max-width: 400px;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.delivery-form input[type="text"]:focus {
+  outline: none;
+  border-color: #3E2723;
+}
+
+.delivery-form button {
+  padding: 10px 20px;
+  background-color: #3E2723;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delivery-form button:hover {
+  background-color: #5D4037;
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                       주문 정보 (테이블) 스타일                        */
+/* ─────────────────────────────────────────────────────────────────── */
+
+.order-summary {
+  margin-bottom: 30px;
+}
+
+.order-summary h3 {
+  font-size: 1.4rem;
+  color: #3E2723;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.order-summary table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-summary th,
+.order-summary td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+  border-bottom: 1px solid #ececec;
+}
+
+.order-summary th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  width: 30%;
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                    배송 상태 타임라인 스타일                            */
+/* ─────────────────────────────────────────────────────────────────── */
+
+.tracking-result {
+  margin-bottom: 30px;
+}
+
+.status-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.status-timeline .status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-left: 4px solid #ccc;
+  position: relative;
+  margin-bottom: 15px;
+  background-color: #fafafa;
+  border-radius: 4px;
+}
+
+.status-timeline .status::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #ccc;
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.status-timeline .status.completed {
+  border-color: #4caf50;
+}
+
+.status-timeline .status.completed::before {
+  background-color: #4caf50;
+}
+
+.status-timeline .status.current {
+  border-color: #FF9800;
+}
+
+.status-timeline .status.current::before {
+  background-color: #FF9800;
+}
+
+.status-timeline .status.upcoming {
+  border-color: #ccc;
+}
+
+.status-timeline .status.upcoming::before {
+  background-color: #ccc;
+}
+
+.status-label {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.status-date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                       택배사 정보 스타일                              */
+/* ─────────────────────────────────────────────────────────────────── */
+
+.shipping-info {
+  margin-bottom: 30px;
+}
+
+.shipping-info h3 {
+  font-size: 1.3rem;
+  color: #3E2723;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.shipping-info p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.shipping-info a {
+  color: #3E2723;
+  font-weight: 500;
+}
+
+.shipping-info a:hover {
+  color: #5D4037;
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                       고객센터 안내 스타일                            */
+/* ─────────────────────────────────────────────────────────────────── */
+
+.customer-service {
+  margin-bottom: 30px;
+}
+
+.customer-service p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.customer-service a {
+  color: #3E2723;
+  font-weight: 500;
+}
+
+.customer-service a:hover {
+  color: #5D4037;
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                          FAQ 섹션 스타일                              */
+/* ─────────────────────────────────────────────────────────────────── */
+
+.faq-section {
+  margin-bottom: 40px;
+}
+
+.faq-section h3 {
+  font-size: 1.4rem;
+  color: #3E2723;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.faq-section dl {
+  margin: 0;
+}
+
+.faq-section dt {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.faq-section dd {
+  font-size: 0.95rem;
+  color: #555;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                          푸터(하단) 스타일                            */
+/* ─────────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                        footer.css (추가/수정 부분)                   */
+/* ─────────────────────────────────────────────────────────────────── */
+
+/* 1. 푸터 고정 및 배경/텍스트 색상 설정 */
+footer {
+  background-color: #D2691E;
+  /* 오렌지 브라운 계열 배경 */
+  color: #000000 !important;
+  /* 모든 텍스트를 검정색으로 강제 */
+  text-align: center;
+  /* 중앙 정렬 */
+  padding: 16px 0;
+  /* 상하 패딩 (푸터 높이를 결정) */
+  font-size: 0.9rem;
+  /* 폰트 크기 */
+  width: 100%;
+  /* 가로 전체 차지 */
+  box-sizing: border-box;
+  position: fixed;
+  /* 화면 하단에 고정 */
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  /* 다른 요소 위에 표시 */
+}
+
+/* 2. .footer-inner 내부 텍스트 색상(검정) 및 레이아웃 유지 */
+footer .footer-inner {
+  max-width: 1200px;
+  /* 중앙 정렬 시 최대 너비 */
+  margin: 0 auto;
+  display: inline-block;
+  /* 텍스트가 중앙에 모이도록 inline-block 사용 */
+  line-height: 1.4;
+  /* 줄 간격 */
+  color: #000000 !important;
+  /* 내부 모든 글자 검정색 */
+  font-size: 0.9rem;
+  /* 폰트 크기 재확인 */
+}
+
+/* 3. 푸터에 포함된 <strong>이나 <span>도 검정색으로 유지 */
+footer .footer-inner strong,
+footer .footer-inner span {
+  color: #000000 !important;
+}
+
+/* 4. 푸터가 콘텐츠를 가리지 않도록 하단 여백 확보 */
+main,
+.slider_position,
+.card-grid {
+  margin-bottom: 80px;
+  /* 푸터 높이(약 60px) + 여유 공간(20px) */
+}
+
+/* ─────────────────────────────────────────────────────────────────── */
+/*                          반응형(Responsive) 처리                       */
+/* ─────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+
+  /* 푸터 내부가 너무 길어질 경우, 텍스트가 줄 바꿈되도록 설정 */
+  footer .footer-inner {
+    display: block;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* 기존 메인/헤더/FAQ 등은 변경하지 않으므로 생략 */
+}
+
+@media (max-width: 480px) {
+  /* 기존 메인/헤더/FAQ 등은 변경하지 않으므로 생략 */
+}
+
+@media (max-width: 1024px) {
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .cart-icon {
-      position: relative;
-      cursor: pointer;
+  .header-inner h1 {
+    margin-bottom: 10px;
   }
 
-  .cart-count {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background-color: #719CED;
-      color: white;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 0.8rem;
+  .header-inner nav {
+    margin: 10px 0;
   }
 
-  .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
+  .top-right-menu {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .delivery-section {
+    padding: 20px 20px;
   }
 
-  .modal-content {
-      background-color: #fdfcf7;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      width: 90%;
+  .delivery-section h2 {
+    font-size: 1.8rem;
   }
 
-  .search-box {
-      max-width: 1350px;
-      margin-bottom: 40px;
+  .delivery-form {
+    flex-direction: column;
   }
 
-  .search-box .input-group {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+  .delivery-form input[type="text"],
+  .delivery-form button {
+    width: 100%;
+    max-width: none;
   }
 
-  .search-box input,
-  .search-box select {
-      padding: 10px;
-      font-size: 0.9em;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
+  .order-summary table th,
+  .order-summary table td {
+    padding: 10px;
+    font-size: 0.95rem;
   }
 
-  .search-box input {
-      width: 400px;
-      height: 40px;
+  .status-timeline .status {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 15px;
   }
 
-  .search-box select {
-      width: 200px;
-      height: 40px;
+  .status-date {
+    margin-top: 8px;
   }
 
-  .btn-group {
-      display: flex;
-      gap: 10px;
-      height: 40px;
+  .faq-section dt {
+    font-size: 0.95rem;
   }
 
-  .search-box button {
-      width: 100px;
-      font-size: 0.9em;
-      line-height: 40px;
-      border: none;
-      border-radius: 5px;
-      background-color: #2d4739;
-      color: #fdfcf7;
-      cursor: pointer;
-      padding: 0;
+  .faq-section dd {
+    font-size: 0.9rem;
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .header-inner nav a,
+  .top-right-menu a {
+    font-size: 0.9rem;
+    margin-right: 15px;
+    margin-left: 15px;
   }
 
-  .search-box button:hover {
-      background-color: #1f3128;
+  .delivery-section {
+    padding: 15px 15px;
   }
 
-  .search-box .error {
-      color: #e67e22;
-      font-size: 0.8em;
-      margin-top: 5px;
-      display: none;
-      width: 100%;
+  .delivery-section h2 {
+    font-size: 1.6rem;
   }
 
-  .image-container {
-      width: 100%;
-      height: 200px;
-      margin-top: 20px;
-      background-color: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px;
+  .order-summary table th,
+  .order-summary table td {
+    padding: 8px;
+    font-size: 0.9rem;
   }
+}
 
-  .image-container img {
-      max-width: 100%;
-      height: auto;
-  }
+/* ─────────────────────────────────────────────────────────────────── */
+/*            로젠 택배 배송 조회 & 문의 게시판 링크를 오렌지색으로 변경             */
+/* ─────────────────────────────────────────────────────────────────── */
 
-  .no-order {
-      background-color: #fdfcf7;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      text-align: center;
-      display: none;
-  }
+/* 배송 정보 섹션의 “로젠 택배 배송 조회” 링크를 오렌지색으로 */
+.shipping-info a {
+  color: #D2691E !important;
+}
 
-  .order-details-panel {
-      display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 400px;
-      height: 100%;
-      background-color: #fdfcf7;
-      border-left: 1px solid #ccc;
-      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      z-index: 1000;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-      overflow-y: auto;
-  }
+/* 고객센터 섹션의 “문의 게시판” 링크를 오렌지색으로 */
+.customer-service a {
+  color: #D2691E !important;
+}
 
-  .order-details-panel.open {
-      display: block;
-      transform: translateX(0);
-  }
-
-  .order-details-panel select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 0.9em;
-  }
-
-  .order-details {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-  }
-
-  .order-details h3 {
-      color: #2d4739;
-      margin-top: 0;
-  }
-
-  .order-items {
-      margin: 20px 0;
-  }
-
-  .order-item {
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-  }
-
-  .status-timeline {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-  }
-
-  .status-step {
-      text-align: center;
-      flex: 1;
-      position: relative;
-  }
-
-  .status-step.active {
-      font-weight: bold;
-      color: #2d4739;
-  }
-
-  .status-step::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      width: 10px;
-      height: 10px;
-      background-color: #ccc;
-      border-radius: 50%;
-      transform: translateX(-50%);
-  }
-
-  .status-step.active::before {
-      background-color: #2d4739;
-  }
-
-  .btn.cancel-btn {
-      background-color: #e67e22;
-      color: #fff;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-      margin-top: 10px;
-      width: 100%;
-  }
-
-  .btn.cancel-btn:hover {
-      background-color: #d35400;
-  }
-
-  .btn.cancel-btn:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-  }
-
-  .btn.close-btn {
-      display: block;
-      margin: 10px auto;
-      background: none;
-      border: none;
-      font-size: 1.5em;
-      cursor: pointer;
-      color: #2d4739;
-      padding: 10px;
-      min-height: 44px;
-  }
-
-  .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-  }
-
-  .sidebar-panel {
-      display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 300px;
-      height: 100%;
-      background-color: #fdfcf7;
-      border-left: 1px solid #ccc;
-      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      z-index: 1001;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-  }
-
-  .sidebar-panel.open {
-      display: block;
-      transform: translateX(0);
-  }
-
-  .sidebar-panel-content {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-  }
-
-  .sidebar-panel-content p {
-      margin: 0 0 20px;
-      font-size: 1em;
-      color: #333;
-  }
-
-  .sidebar-panel-content .btn-group {
-      margin-top: auto;
-      display: flex;
-      gap: 10px;
-  }
-
-  .sidebar-panel-content button {
-      flex: 1;
-      padding: 10px;
-  }
-
-  footer {
-      background-color: #2d4739;
-      color: #fdfcf7;
-      padding: 20px;
-      text-align: center;
-      width: 100%;
-  }
-
-  @media (max-width: 768px) {
-      main {
-          padding: 0 10px;
-      }
-
-      .search-box {
-          max-width: 100%;
-      }
-
-      .search-box .input-group {
-          flex-direction: column;
-      }
-
-      .search-box input,
-      .search-box select,
-      .search-box .btn-group {
-          width: 100%;
-      }
-
-      .search-box button {
-          width: 100%;
-          line-height: normal;
-          padding: 10px;
-      }
-
-      .image-container {
-          height: 150px;
-      }
-
-      .status-timeline {
-          flex-direction: column;
-          gap: 10px;
-      }
-
-      .status-step::before {
-          top: 0;
-          left: -10px;
-          transform: none;
-      }
-
-      .order-details-panel {
-          width: 100%;
-          max-width: none;
-      }
-
-      .sidebar-panel {
-          width: 100%;
-          max-width: none;
-      }
-
-      .sidebar-panel-content .btn-group {
-          flex-direction: column;
-      }
-  }
+/* 호버 시에도 동일한 오렌지색 유지 */
+.shipping-info a:hover,
+.customer-service a:hover {
+  color: #D2691E !important;
+}

@@ -23,18 +23,28 @@ h1 {
   font-size: 2rem;
 }
 
+.cart-page-wrapper{
+  border:20px;
+}
+.section-title{
+  border-top:50px;
+}
+
+
 main.cart-container {
-  max-width: 900px;
+  width: 70%;
   margin: 40px auto;
-  padding: 0 20px;
+  border:20px;
+  padding: 20px;
 }
 
 /* ─── Cart Item ─────────────────────── */
+
 .cart-item {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ddd;
-  padding: 20px 0;
+  padding: 20px;
   gap: 20px;
 }
 

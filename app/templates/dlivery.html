@@ -1,157 +1,179 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>수제커피브루 - 홈</title>
-  <link rel="stylesheet" href="../static/css/common.css" />
-  <link rel="stylesheet" href="../static/css/header.css" />
-  <link rel="stylesheet" href="../static/css/index.css" />
-  <link rel="stylesheet" href="../static/css/footer.css" />
-  <link rel="stylesheet" href="../static\css\early.css"/>
- <link rel="stylesheet"  href="../static\css\goodsorder.css"
+  <title>배송 현황 | 이른 아침 커피</title>
+
+  <!-- 공통 CSS -->
+  <link rel="stylesheet" href="../static/css/dlivery.css" />
 </head>
 
 <body>
+  <!-- ───────────────────────────────────────────────────────── -->
+  <!--                          상단 헤더 / 네비게이션                          -->
+  <!-- ───────────────────────────────────────────────────────── -->
   <header>
     <div class="header-inner">
-      <h1>이른 아침</h1>
-
+      <h1>아침을 여는 이야기</h1>
       <nav>
-        
-        <a href="./early_morning_coffee.html">아침을 여는 이야기</a>
+        <a href="./index.html">Home</a>
         <a href="./submenu.html">원두/생두</a>
         <a href="./goods_order.html">과일/시럽</a>
-        <a href="./coffebeen_order.html">커피용품</a>
-        <a href="./etc_order.html">기타용품</a>
+        <a href="./etc_order.html">커피용품</a>
+        <a href="./coffebeen_order.html">기타용품</a>
         <a href="./findstore.html">매장 찾기</a>
       </nav>
-
       <div class="top-right-menu">
         <a href="./login.html">로그인</a>
         <span class="divider">|</span>
-        <a href="./order_tracking.html">주문조회</a>
+        <a href="./board.html">게시판</a>
         <span class="divider">|</span>
+        <a href="./cart.html">장바구니🛒</a>
         <span class="divider">|</span>
-    <a href="./cart.html">장바구니🛒</a>
         <a href="./dlivery.html">배송현황</a>
       </div>
     </div>
   </header>
 
-  <title>배송현황 조회</title>
-  <!-- 외부 CSS 파일을 연결합니다 -->
-  <link rel="stylesheet" href="delivery.css" />
-</head>
-<body>
-  <main class="container">
-    <h2 class="page-title">배송현황 조회</h2>
+  <!-- ───────────────────────────────────────────────────────── -->
+  <!--                          메인 컨텐츠 (배송 조회)                          -->
+  <!-- ───────────────────────────────────────────────────────── -->
+  <main>
+    <section class="delivery-section">
+      <!-- 페이지 제목 -->
+      <h2>배송 조회</h2>
 
-    <div class="search-box">
-      <div class="input-group">
-        <input
-          type="text"
-          id="order-id"
-          class="input-field"
-          placeholder="주문 번호를 입력하세요 (예: ORD123456789, ORD987654321)"
-        />
+      <!-- 운송장 번호 입력 폼 -->
+      <form class="delivery-form" action="#" method="get">
+        <label for="tracking-number">운송장 번호</label>
+        <input type="text" id="tracking-number" name="tracking-number" placeholder="운송장 번호를 입력하세요" required />
+        <button type="submit">조회</button>
+      </form>
 
-        <select id="search-history" class="select-field">
-          <option value="">최근 조회 기록</option>
-        </select>
-
-        <select id="sort-order" class="select-field">
-          <option value="latest">최신순</option>
-          <option value="total-asc">총액 낮은순</option>
-          <option value="total-desc">총액 높은순</option>
-        </select>
-
-        <select id="status-filter" class="select-field">
-          <option value="" selected>전체</option>
-          <option value="주문 접수">주문 접수</option>
-          <option value="배송 준비">배송 준비</option>
-          <option value="배송 중">배송 중</option>
-          <option value="완료">완료</option>
-          <option value="취소됨">취소됨</option>
-        </select>
-
-        <div class="btn-group">
-          <button type="button" class="btn search-btn" onclick="trackOrder()">
-            조회
-          </button>
-          <button type="button" class="btn reset-btn" onclick="resetSearch()">
-            취소
-          </button>
-          <button
-            type="button"
-            class="btn clear-btn"
-            onclick="clearSearchHistory()"
-          >
-            조회 기록 삭제
-          </button>
-        </div>
+      <!-- ───────────────────────────────────────────────────────── -->
+      <!--                   주문 정보 (추가된 내용)                   -->
+      <!-- ───────────────────────────────────────────────────────── -->
+      <div class="order-summary">
+        <h3>주문 정보</h3>
+        <table>
+          <tr>
+            <th>주문 번호</th>
+            <td>#20250606-0001</td>
+          </tr>
+          <tr>
+            <th>주문 날짜</th>
+            <td>2025-06-05 09:45</td>
+          </tr>
+          <tr>
+            <th>결제 금액</th>
+            <td>₩25,000</td>
+          </tr>
+          <tr>
+            <th>배송비</th>
+            <td>₩2,500</td>
+          </tr>
+          <tr>
+            <th>수령인</th>
+            <td>홍길동</td>
+          </tr>
+          <tr>
+            <th>배송지 주소</th>
+            <td>서울특별시 강남구 테헤란로 123, 4층</td>
+          </tr>
+          <tr>
+            <th>연락처</th>
+            <td>010-1234-5678</td>
+          </tr>
+        </table>
       </div>
 
-      <span class="error-msg" id="order-id-error"></span>
-
-      <div class="image-container">
-        <!-- 이미지 삽입 공간 -->
-        <p>이미지 삽입 공간</p>
+      <!-- ───────────────────────────────────────────────────────── -->
+      <!--                  배송 상태 타임라인 (기존)                  -->
+      <!-- ───────────────────────────────────────────────────────── -->
+      <div class="tracking-result">
+        <ul class="status-timeline">
+          <li class="status completed">
+            <span class="status-label">상품 준비중</span>
+            <span class="status-date">2025-06-05 10:30</span>
+          </li>
+          <li class="status completed">
+            <span class="status-label">배송 출발</span>
+            <span class="status-date">2025-06-06 09:00</span>
+          </li>
+          <li class="status current">
+            <span class="status-label">배송 중</span>
+            <span class="status-date">2025-06-06 13:15</span>
+          </li>
+          <li class="status upcoming">
+            <span class="status-label">배송 완료</span>
+            <span class="status-date">예정일: 2025-06-07</span>
+          </li>
+        </ul>
       </div>
-    </div>
 
-    <div class="no-order" id="no-order">
-      <p>조회된 주문이 없습니다.</p>
-    </div>
+      <!-- ───────────────────────────────────────────────────────── -->
+      <!--                   택배사 정보 (추가된 내용)                 -->
+      <!-- ───────────────────────────────────────────────────────── -->
+      <div class="shipping-info">
+        <h3>택배사 정보</h3>
+        <p>
+          <strong>택배사:</strong> 로젠 택배<br />
+          <strong>송장 조회 바로가기:</strong>
+          <a href="https://www.ilogen.com/tracking" target="_blank" rel="noopener">
+            로젠 택배 배송 조회
+          </a>
+        </p>
+      </div>
+
+      <!-- ───────────────────────────────────────────────────────── -->
+      <!--                  고객센터 안내 (추가된 내용)                -->
+      <!-- ───────────────────────────────────────────────────────── -->
+      <div class="customer-service">
+        <p>
+          배송 관련 문의가 있으시면 <strong>고객센터 1644-1234</strong>로 연락주시거나,
+          <a href="./contact.html">문의 게시판</a>을 이용해주세요.
+        </p>
+      </div>
+
+      <!-- ───────────────────────────────────────────────────────── -->
+      <!--              자주 묻는 질문 (FAQ) (추가된 내용)             -->
+      <!-- ───────────────────────────────────────────────────────── -->
+      <div class="faq-section">
+        <h3>자주 묻는 질문</h3>
+        <dl>
+          <dt>배송 조회는 어떻게 하나요?</dt>
+          <dd>운송장 번호를 입력한 뒤 “조회” 버튼을 클릭하시면 최신 배송 상태를 확인하실 수 있습니다.</dd>
+
+          <dt>배송 기간은 얼마나 걸리나요?</dt>
+          <dd>서울/경기 지역은 평균 1~2일, 그 외 지역은 2~3일 정도 소요됩니다.</dd>
+
+          <dt>배송비는 얼마인가요?</dt>
+          <dd>기본 배송비는 2,500원이며, 주문 금액이 30,000원 이상일 경우 무료 배송됩니다.</dd>
+
+          <dt>배송 완료 후 반품/교환은 어떻게 하나요?</dt>
+          <dd>상품 수령일로부터 7일 이내 고객센터(1644-1234)로 문의 주시면 안내해 드립니다.</dd>
+        </dl>
+      </div>
+    </section>
   </main>
 
-  <!-- 모달 오버레이 (주문 상세보기) -->
-  <div class="modal-overlay" id="modal-overlay"></div>
-  <div class="order-details-panel" id="order-details-panel">
-    <select id="order-select" class="select-field" onchange="displayOrderDetails(this.value)">
-      <option value="">주문을 선택하세요</option>
-    </select>
-    <div id="order-details-content" class="order-details-content"></div>
-  </div>
-
-  <!-- 사이드바 (주문 취소 확인) -->
-  <div class="sidebar-panel" id="cancel-panel">
-    <div class="sidebar-panel-content">
-      <p id="cancel-message">주문을 정말 취소하시겠습니까?</p>
-      <div class="btn-group">
-        <button type="button" class="btn confirm-btn" onclick="confirmCancel()">
-          확인
-        </button>
-        <button type="button" class="btn cancel-btn" onclick="closeCancelPanel()">
-          취소
-        </button>
-      </div>
+  <!-- ───────────────────────────────────────────────────────── -->
+  <!--                          하단 푸터                          -->
+  <!-- ───────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <strong>상호명</strong> : 수제커피브루 &nbsp; | &nbsp;
+      <strong>주소</strong> : 경기도 커피시 향기구 아라비카로 100 &nbsp; | &nbsp;
+      <strong>대표자</strong> : 김커피 &nbsp; | &nbsp;
+      <strong>사업자등록번호</strong> : 123-45-67890 &nbsp; | &nbsp;
+      <strong>대표전화</strong> : 02-1234-5678<br />
+      &copy; 2025 SUJAE COFFEE BREW. All rights reserved.
     </div>
-  </div>
+  </footer>
 
-  <!-- (필요하다면 아래에 JavaScript 파일이나 인라인 스크립트를 추가) -->
-  <!-- 
-    <script src="delivery.js"></script> 
-    함수 예시: 
-      function trackOrder() { ... } 
-      function resetSearch() { ... }
-      function clearSearchHistory() { ... }
-      function selectSearchHistory() { ... }
-      function displayOrderDetails(orderId) { ... }
-      function closeOrderPanel() { ... }
-      function confirmCancel() { ... }
-      function closeCancelPanel() { ... }
-  -->
+
 </body>
-</html>
 
-
-    <footer>
-        © 2025 수제커피브루 | 경기도 커피시 향기구 아라비카로 100
-    </footer>
-
-    <script src="../static/js/dilvery.js">
-        
-    </script>
-</body>
 </html>

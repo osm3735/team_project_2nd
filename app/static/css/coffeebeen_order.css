@@ -1,0 +1,206 @@
+/* coffeebeen_order.css */
+
+/* ============================================================= */
+/*                          기본 리셋 및 폰트 설정                         */
+/* ============================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9f6f2;    /* 페이지 전체 배경 */
+  color: #362106;               /* 기본 텍스트 컬러: 다크 브라운 */
+  font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================================= */
+/*                           상단 헤더 / 네비게이션                      */
+/* ============================================================= */
+.main-header {
+  background-color: #3E2723;    /* 진한 브라운 */
+  color: #FFFFFF;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.main-header h1 {
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.main-nav a {
+  color: #FFFFFF;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  transition: background 0.3s;
+}
+
+.main-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.top-right-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.top-right-menu a {
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.6rem;
+  transition: background 0.3s;
+}
+
+.top-right-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.divider {
+  color: #FFFFFF;
+  margin: 0 0.25rem;
+}
+
+/* ============================================================= */
+/*                         섹션 제목 (메인 타이틀)                      */
+/* ============================================================= */
+.main-title {
+  text-align: center;
+  color: #3E2723;             /* 다크 브라운 */
+  font-size: 2rem;
+  margin: 2.5rem 0 1.5rem;
+}
+
+/* ============================================================= */
+/*                          카드 그리드 레이아웃                        */
+/* ============================================================= */
+.card-grid {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* ============================================================= */
+/*                           카드 개별 스타일                          */
+/* ============================================================= */
+.card {
+  background-color: #FFFFFF;
+  border: 1px solid #3E2723;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-desc {
+  padding: 1rem;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-desc h3 {
+  font-size: 1.1rem;
+  color: #362106;  /* 다크 브라운 */
+  margin-bottom: 0.5rem;
+}
+
+.card-desc p {
+  font-size: 1rem;
+  color: #E65100;  /* 선명한 오렌지 */
+  margin-bottom: 1rem;
+}
+
+.add-to-cart {
+  background-color: #E65100; /* 오렌지 */
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-to-cart:hover {
+  background-color: #BF360C; /* 진한 오렌지 */
+}
+
+/* ============================================================= */
+/*                            반응형 보조 스타일                         */
+/* ============================================================= */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .top-right-menu {
+    justify-content: center;
+  }
+
+  .main-header h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-desc p {
+    font-size: 0.95rem;
+  }
+
+  .add-to-cart {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+  }
+}
