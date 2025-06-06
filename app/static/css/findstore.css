@@ -1,0 +1,118 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    gap: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 지도 영역 */
+#map {
+    height: 700px;
+    width: 70%;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 왼쪽 검색 영역 */
+.mapselect {
+    width: 30%;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* 제목 스타일 */
+.mapselect h1 {
+    font-size: 24px;
+    color: #2d4739;
+    margin-left: 0; /* 기존 150px 제거 */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 검색 박스 */
+.search-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-box select,
+.search-box input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.search-box button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: #3E2723; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #1e3228;
+}
+
+/* 검색 결과 */
+#search-results > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 동일 너비로 설정 */
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px;
+    margin-bottom: 12px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+}
+
+#search-results > div:hover {
+    background-color: #eef3ee;
+}
+
+#search-results > div .text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#search-results > div strong {
+    font-size: 16px;
+    color: #333;
+}
+
+#search-results > div p {
+    margin: 4px 0 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+#search-results > div button {
+    justify-self: start; /* 버튼 왼쪽 정렬 (필요 시 center 또는 end로 변경 가능) */
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #2d4739;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+#search-results > div button:hover {
+    background-color: #1e3228;
+}
