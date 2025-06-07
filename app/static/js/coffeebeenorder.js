@@ -1,207 +1,205 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let currentItem = {};
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let currentItem = null;
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    window.openAddToCartModal = function (name, price) {
-        console.log("모달 열기:", name, price);
-        currentItem = { name, price };
-        const modalName = document.getElementById("modal-item-name");
-        const modalPrice = document.getElementById("modal-item-price");
-        if (!modalName || !modalPrice) {
-            console.error("모달 요소를 찾을 수 없습니다:", { modalName, modalPrice });
-            return;
-        }
-        modalName.innerText = name;
-        modalPrice.innerText = price;
-        const modal = document.getElementById("add-to-cart-modal");
-        modal.style.display = "flex";
-        window.scrollTo(0, 0);
-        console.log("모달 스타일:", modal.style.display, modal.style.background);
+function openAddToCartModal(name, basePrice) {
+    currentItem = { name, basePrice };
+    document.getElementById('modal-item-name').textContent = name;
+    document.getElementById('modal-item-price').textContent = basePrice;
+    document.getElementById('quantity').value = 1;
+    document.getElementById('extra-shot').checked = false;
+    document.getElementById('syrup').value = 'none';
+    document.querySelector('input[name="temp"][value="hot"]').checked = true;
+    document.getElementById('add-to-cart-modal').style.display = 'flex';
+}
+
+function closeAddToCartModal() {
+    document.getElementById('add-to-cart-modal').style.display = 'none';
+    currentItem = null;
+}
+
+function addToCart() {
+    const item = {
+        itemId: 'ITEM' + Date.now(),
+        name: currentItem.name,
+        basePrice: currentItem.basePrice,
+        temp: document.querySelector('input[name="temp"]:checked').value,
+        extraShot: document.getElementById('extra-shot').checked,
+        syrup: document.getElementById('syrup').value,
+        quantity: parseInt(document.getElementById('quantity').value) || 1
+    };
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${item.name}이(가) 장바구니에 추가되었습니다.`);
+    closeAddToCartModal();
+    openCartModal();
+}
+
+function openCartModal() {
+    displayCartItems();
+    document.getElementById('cart-modal').style.display = 'flex';
+}
+
+function closeCartModal() {
+    document.getElementById('cart-modal').style.display = 'none';
+    document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
+}
+
+function displayCartItems() {
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+    let subtotal = 0;
+    cart.forEach(item => {
+        let price = item.basePrice;
+        if (item.extraShot) price += 500;
+        if (item.syrup !== 'none') price += 500;
+        const itemTotal = price * item.quantity;
+        subtotal += itemTotal;
+
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+                    <div class="cart-item-details">
+                        <strong>${item.name}</strong><br>
+                        온도: ${item.temp}, 샷 추가: ${item.extraShot ? '예' : '아니오'}, 
+                        시럽: ${item.syrup === 'none' ? '없음' : item.syrup}<br>
+                        수량: <input type="number" min="1" value="${item.quantity}" onchange="updateCartItemQuantity('${item.itemId}', this.value)">
+                        가격: ₩${itemTotal}
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="btn" onclick="removeCartItem('${item.itemId}')">삭제</button>
+                    </div>
+                `;
+        cartItems.appendChild(cartItem);
+    });
+
+    const shipping = subtotal >= 30000 ? 0 : 3000;
+    document.getElementById('cart-total').textContent = subtotal + shipping;
+    document.getElementById('cart-shipping').textContent = shipping;
+}
+
+function updateCartItemQuantity(itemId, quantity) {
+    const item = cart.find(i => i.itemId === itemId);
+    if (item) {
+        item.quantity = parseInt(quantity) || 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCartItems();
+    }
+}
+
+function removeCartItem(itemId) {
+    cart = cart.filter(i => i.itemId !== itemId);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCartItems();
+}
+
+function validateOrderForm() {
+    const name = document.getElementById('cart-name').value.trim();
+    const address = document.getElementById('cart-address').value.trim();
+    const phone = document.getElementById('cart-phone').value.trim();
+    let isValid = true;
+
+    document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
+
+    if (cart.length === 0) {
+        alert('장바구니가 비어 있습니다.');
+        return false;
+    }
+    if (name.length < 2) {
+        document.getElementById('cart-name-error').style.display = 'block';
+        isValid = false;
+    }
+    if (address.length < 5) {
+        document.getElementById('cart-address-error').style.display = 'block';
+        isValid = false;
+    }
+    if (!/^\d{3}-\d{4}-\d{4}$/.test(phone)) {
+        document.getElementById('cart-phone-error').style.display = 'block';
+        isValid = false;
+    }
+    return isValid;
+}
+
+async function submitOrder() {
+    if (!validateOrderForm()) return;
+
+    const items = cart.map(item => ({
+        name: item.name,
+        price: item.basePrice + (item.extraShot ? 500 : 0) + (item.syrup !== 'none' ? 500 : 0),
+        quantity: item.quantity,
+        temp: item.temp,
+        extraShot: item.extraShot,
+        syrup: item.syrup
+    }));
+    const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const shipping = subtotal >= 30000 ? 0 : 3000;
+    const order = {
+        items,
+        name: document.getElementById('cart-name').value.trim(),
+        address: document.getElementById('cart-address').value.trim(),
+        phone: document.getElementById('cart-phone').value.trim(),
+        payment: document.getElementById('cart-payment').value,
+        subtotal,
+        shipping,
+        total: subtotal + shipping,
+        orderId: 'ORD' + Date.now(),
+        status: '주문 접수',
+        createdAt: new Date().toISOString()
     };
 
-    window.closeAddToCartModal = function () {
-        const modal = document.getElementById("add-to-cart-modal");
-        modal.style.display = "none";
-    };
+    // Toss Payments API 호출 (모의)
+    try {
+        // 실제 API 호출 예시 (키 필요)
+        /*
+        const response = await fetch('https://api.tosspayments.com/v1/payments', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic YOUR_TOSS_API_KEY',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                amount: order.total,
+                orderId: order.orderId,
+                orderName: '수제커피브루 주문',
+                customerName: order.name
+            })
+        });
+        const result = await response.json();
+        if (!result.success) throw new Error('결제 실패');
+        */
 
-    window.addToCart = function () {
-        console.log("addToCart 호출");
-        const tempRadio = document.querySelector('input[name="temp"]:checked');
-        const extraShot = document.getElementById("extra-shot");
-        const syrup = document.getElementById("syrup");
-        const quantity = document.getElementById("quantity");
-
-        if (!tempRadio) {
-            alert("온도를 선택해주세요.");
-            return;
-        }
-        if (!extraShot || !syrup || !quantity) {
-            console.error("입력 요소를 찾을 수 없습니다:", { extraShot, syrup, quantity });
-            alert("입력 요소를 찾을 수 없습니다. 관리자에게 문의하세요.");
-            return;
-        }
-
-        const temp = tempRadio.value;
-        const shot = extraShot.checked ? 500 : 0;
-        const syrupValue = syrup.value;
-        const qty = parseInt(quantity.value) || 1;
-
-        const item = {
-            name: currentItem.name,
-            price: currentItem.price,
-            temp,
-            shot: shot > 0,
-            syrup: syrupValue,
-            qty,
-            totalPrice: (currentItem.price + shot) * qty
-        };
-
-        cart.push(item);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        console.log("장바구니에 추가:", item);
-        updateCartCount();
-        closeAddToCartModal();
-        setTimeout(() => {
-            openCartModal();
-        }, 0);
-    };
-
-    window.updateCartCount = function () {
-        const cartCount = document.querySelector(".cart-count");
-        if (cartCount) {
-            cartCount.innerText = cart.length;
-        } else {
-            console.error("cart-count 요소를 찾을 수 없습니다.");
-        }
-    };
-
-    window.openCartModal = function () {
-        updateCartUI();
-        const cartModal = document.getElementById("cart-modal");
-        if (!cartModal) {
-            console.error("cart-modal 요소를 찾을 수 없습니다.");
-            return;
-        }
-        cartModal.style.display = "flex";
-        window.scrollTo(0, 0);
-        console.log("카트 모달 열기:", cartModal.style.display);
-    };
-
-    window.closeCartModal = function () {
-        const cartModal = document.getElementById("cart-modal");
-        if (cartModal) {
-            cartModal.style.display = "none";
-        }
-    };
-
-    window.updateCartUI = function () {
-        const cartItemsDiv = document.getElementById("cart-items");
-        const total = document.getElementById("cart-total");
-        if (!cartItemsDiv || !total) {
-            console.error("cart-items 또는 cart-total 요소를 찾을 수 없습니다.");
-            return;
-        }
-        cartItemsDiv.innerHTML = "";
-        let totalPrice = 0;
-
-        cart.forEach((item, index) => {
-            const itemDiv = document.createElement("div");
-            itemDiv.className = "cart-item";
-            itemDiv.innerHTML = `
-                <p>${item.name} (${item.temp}) ${item.shot ? "샷추가" : ""} ${item.syrup !== 'none' ? item.syrup : ''} x ${item.qty} - ₩${item.totalPrice}</p>
-                <button class="btn" onclick="removeFromCart(${index})">삭제</button>
-            `;
-            cartItemsDiv.appendChild(itemDiv);
-            totalPrice += item.totalPrice;
+        // 모의 결제
+        console.log('Toss Payments API 호출 시뮬레이션:', {
+            amount: order.total,
+            orderId: order.orderId,
+            orderName: '수제커피브루 주문',
+            customerName: order.name
         });
 
-        total.textContent = totalPrice;
-        console.log("장바구니 UI 갱신:", cart);
-    };
+        // 주문 저장
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
 
-    window.removeFromCart = function (index) {
-        console.log("삭제 시도: 인덱스", index);
-        if (index >= 0 && index < cart.length) {
-            cart.splice(index, 1);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
-            updateCartUI();
-            console.log("삭제 완료: 새 장바구니", cart);
-        } else {
-            console.error("잘못된 인덱스:", index);
-        }
-    };
-
-    window.checkout = function () {
-        const cartModal = document.getElementById("cart-modal");
-        if (cartModal) {
-            cartModal.style.display = "flex";
-            updateCartUI();
-        } else {
-            console.error("cart-modal 요소를 찾을 수 없습니다.");
-        }
-    };
-
-    window.closeCheckoutModal = function () {
-        const cartModal = document.getElementById("cart-modal");
-        if (cartModal) {
-            cartModal.style.display = "none";
-        }
-    };
-
-    window.submitOrder = function () {
-        const name = document.getElementById("checkout-name");
-        const phone = document.getElementById("checkout-phone");
-        const address = document.getElementById("checkout-address");
-        const payment = document.querySelector('input[name="payment"]:checked');
-
-        if (!name || !phone || !address) {
-            console.error("결제 입력 요소를 찾을 수 없습니다:", { name, phone, address });
-            alert("결제 입력 요소를 찾을 수 없습니다. 관리자에게 문의하세요.");
-            return;
-        }
-
-        if (!name.value || name.value.length < 2) {
-            alert("이름을 2자 이상 입력해주세요.");
-            return;
-        }
-        if (!phone.value || phone.value.length < 10) {
-            alert("유효한 연락처를 입력해주세요.");
-            return;
-        }
-        if (!address.value || address.value.length < 5) {
-            alert("주소를 5자 이상 입력해주세요.");
-            return;
-        }
-        if (!payment) {
-            alert("결제 수단을 선택해주세요.");
-            return;
-        }
-
-        console.log("결제 처리:", { name: name.value, phone: phone.value, address: address.value, payment: payment.value });
-        alert("결제가 완료되었습니다! 감사합니다 :)");
+        // 장바구니 초기화
         cart = [];
-        localStorage.removeItem("cart");
-        updateCartCount();
-        updateCartUI();
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(`결제 완료! 주문 번호: ${order.orderId}\n총액: ₩${order.total}`);
         closeCartModal();
-    };
-
-    window.clearCart = function () {
-        console.log("장바구니 전체 삭제 시도");
-        cart = [];
-        localStorage.removeItem("cart");
-        updateCartCount();
-        updateCartUI();
-        console.log("장바구니 전체 삭제 완료");
-    };
-
-    const cartButton = document.querySelector(".cart-count");
-    if (cartButton) {
-        cartButton.parentElement.addEventListener("click", openCartModal);
-    } else {
-        console.error("cart-count 버튼을 찾을 수 없습니다.");
+        window.location.href = './order_page.html';
+    } catch (error) {
+        console.error('결제 오류:', error);
+        alert('결제에 실패했습니다. 다시 시도해주세요.');
     }
+}
 
-    updateCartCount();
+document.getElementById('quantity').addEventListener('input', () => {
+    document.getElementById('quantity').value = Math.max(1, parseInt(document.getElementById('quantity').value) || 1);
+});
+document.getElementById('extra-shot').addEventListener('change', () => { });
+document.getElementById('syrup').addEventListener('change', () => { });
+document.querySelectorAll('input[name="temp"]').forEach(radio => radio.addEventListener('change', () => { }));
+
+document.getElementById('cart-phone').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') submitOrder();
 });

@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>기타제품 | 이른아침커피브루</title>
-
-  <!-- CSS 파일 경로 (슬래시 사용) -->
+  <title>수제커피브루 - 홈</title>
   <link rel="stylesheet" href="../static/css/common.css" />
   <link rel="stylesheet" href="../static/css/header.css" />
+  <link rel="stylesheet" href="../static/css/index.css" />
   <link rel="stylesheet" href="../static/css/footer.css" />
-  <link rel="stylesheet" href="../static/css/coffeebeen_order.css" />
+  <link rel="stylesheet" href="../static\css/orderform.css" />
+  <link rel="stylesheet" href="../static/css/coffeebeenorder.css" />
+  <link rel="stylesheet" href="../static/css/early_morning_coffe.css" />
 </head>
 
 <body>
-  <!-- ───────────────────────────────────────────────────────────────────────── -->
-  <!--                            상단 헤더 / 네비게이션                           -->
-  <!-- ───────────────────────────────────────────────────────────────────────── -->
-  <header class="main-header">
+  <header>
     <div class="header-inner">
-      <h1>이른 아침</h1>
+      <h1><a style="text-decoration-line: none;" href="./index.html">이른 아침</h1></a>
+
       <nav>
-        <a href="./index.html">Home</a>
-        <a href="./early_morning_coffee.html">아침을 여는 이야기</a>
+
+        <a href="./early_Morning_Coffee.html">회사소개</a>
         <a href="./submenu.html">원두/생두</a>
         <a href="./goods_order.html">과일/시럽</a>
-        <a href="./coffebeen_order.html">커피용품</a>
-        <a href="./etc_order.html">기타용품</a>
+        <a href="./etc_order.html">커피용품</a>
+        <a href="./coffebeen_order.html">기타용품</a>
         <a href="./findstore.html">매장 찾기</a>
       </nav>
       <div class="top-right-menu">
@@ -40,10 +40,11 @@
     </div>
   </header>
 
-  <!-- ───────────────────────────────────────────────────────────────────────── -->
-  <!--                            Coffee ETC 섹션 시작                            -->
-  <!-- ───────────────────────────────────────────────────────────────────────── -->
   <h1 class="main-title">Coffee ETC</h1>
+
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
+  <!--                               상품 카드 그리드                             -->
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
   <section class="card-grid">
     <!-- 카드 1 -->
     <div class="card" data-name="커피 핫 컵" data-price="49000" data-img="../static/img/K-019.jpg">
@@ -54,24 +55,27 @@
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
+
     <!-- 카드 2 -->
     <div class="card" data-name="커피 아이스 컵" data-price="55000" data-img="../static/img/icecup.jpg">
-      <img src="../static/img/K-070.png" alt="커피 아이스 컵" />
+      <img src="../static/img/icecup.jpg" alt="커피 아이스 컵" />
       <div class="card-desc">
         <h3>커피 컵(ice) 100ex</h3>
         <p>₩55,000</p>
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
+
     <!-- 카드 3 -->
     <div class="card" data-name="컵 홀더" data-price="50000" data-img="../static/img/cupholder.jpg">
-      <img src="../static/img/K-092.png" alt="컵 홀더" />
+      <img src="../static/img/cupholder.jpg" alt="컵 홀더" />
       <div class="card-desc">
         <h3>컵 홀더 (1000ex)</h3>
         <p>₩50,000</p>
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
+
     <!-- 카드 4 -->
     <div class="card" data-name="커피 빨대" data-price="28000" data-img="../static/img/K-018.jpg">
       <img src="../static/img/K-018.jpg" alt="커피 빨대" />
@@ -82,16 +86,15 @@
       </div>
     </div>
   </section>
-  <!-- ───────────────────────────────────────────────────────────────────────── -->
-  <!--                            Coffee ETC 섹션 끝                              -->
-  <!-- ───────────────────────────────────────────────────────────────────────── -->
+
 
   <!-- ───────────────────────────────────────────────────────────────────────── -->
-  <!--                           Coffee Goods 섹션 시작                           -->
+  <!--                               상품 카드 그리드                             -->
   <!-- ───────────────────────────────────────────────────────────────────────── -->
   <h1 class="main-title">Coffee Goods</h1>
   <section class="card-grid">
-    <!-- 카드 5 (텀블러) -->
+
+    <!-- 카드 5 -->
     <div class="card" data-name="텀블러" data-price="12000" data-img="../static/img/K-146.png">
       <img src="../static/img/K-146.png" alt="텀블러" />
       <div class="card-desc">
@@ -100,16 +103,18 @@
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
-    <!-- 카드 6 (텀블러 세트) -->
+
+    <!-- 카드 6 -->
     <div class="card" data-name="텀블러 세트" data-price="23000" data-img="../static/img/K-144.png">
-      <img src="../static/img/K-144.png" alt="텀블러 세트" />
+      <img src="../static/img/K-144.png" alt="텀블러" />
       <div class="card-desc">
         <h3>텀블러 세트</h3>
         <p>₩23,000</p>
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
-    <!-- 카드 7 (키홀더) -->
+
+    <!-- 카드 7 -->
     <div class="card" data-name="키홀더" data-price="8000" data-img="../static/img/K-143.png">
       <img src="../static/img/K-143.png" alt="키홀더" />
       <div class="card-desc">
@@ -118,16 +123,18 @@
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
-    <!-- 카드 8 (키홀더 세트) -->
+
+    <!-- 카드 8 -->
     <div class="card" data-name="키홀더 세트" data-price="25000" data-img="../static/img/K-142.png">
-      <img src="../static/img/K-142.png" alt="키홀더 세트" />
+      <img src="../static/img/K-142.png" alt="키홀더" />
       <div class="card-desc">
         <h3>키홀더 세트</h3>
         <p>₩25,000</p>
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
-    <!-- 카드 9 (태양 키링) -->
+
+    <!-- 카드 9 -->
     <div class="card" data-name="태양 키링" data-price="7000" data-img="../static/img/sunring.jpg">
       <img src="../static/img/sunring.jpg" alt="태양 키링" />
       <div class="card-desc">
@@ -136,7 +143,8 @@
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
-    <!-- 카드 10 (달 키링) -->
+
+    <!-- 카드 10 -->
     <div class="card" data-name="달 키링" data-price="7000" data-img="../static/img/moonring.jpg">
       <img src="../static/img/moonring.jpg" alt="달 키링" />
       <div class="card-desc">
@@ -145,21 +153,20 @@
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
-    <!-- ───────────────────────────────────────────────────────────────────────── -->
-    <!-- 달 키링 옆에 “태양 인형”과 “달 인형” 카드를 추가 -->
-    <!-- ───────────────────────────────────────────────────────────────────────── -->
-    <!-- 카드 11 (태양 인형) -->
+
+    <!-- 카드 11 -->
     <div class="card" data-name="태양 인형" data-price="27000" data-img="../static/img/sundoll.jpg">
-      <img src="../static/img/sundoll.jpg" alt="태양 인형" />
+      <img src="../static/img/sundoll.jpg" alt="태양 인형">
       <div class="card-desc">
         <h3>태양 인형</h3>
         <p>₩27,000</p>
         <button class="add-to-cart">구매하기</button>
       </div>
     </div>
-    <!-- 카드 12 (달 인형) -->
+
+    <!-- 카드 12 -->
     <div class="card" data-name="달 인형" data-price="27000" data-img="../static/img/moondoll.jpg">
-      <img src="../static/img/moondoll.jpg" alt="달 인형" />
+      <img src="../static/img/moondoll.jpg" alt="달 인형">
       <div class="card-desc">
         <h3>달 인형</h3>
         <p>₩27,000</p>
@@ -167,7 +174,32 @@
       </div>
     </div>
 
-         
+  </section>
 
+
+
+
+
+
+
+
+
+
+
+  <footer>
+    <div class="footer-inner">
+      <strong>상호명</strong> : 수제커피브루 &nbsp; | &nbsp;
+      <strong>주소</strong> : 경기도 커피시 향기구 아라비카로 100 &nbsp; | &nbsp;
+      <strong>대표자</strong> : 김커피 &nbsp; | &nbsp;
+      <strong>사업자등록번호</strong> : 123-45-67890 &nbsp; | &nbsp;
+      <strong>대표전화</strong> : 02-1234-5678<br />
+      &copy; 2025 SUJAE COFFEE BREW. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="../static/js/cart.js">
+
+  </script>
 </body>
+
 </html>

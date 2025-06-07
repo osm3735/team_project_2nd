@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,23 +9,25 @@
   <link rel="stylesheet" href="../static/css/header.css" />
   <link rel="stylesheet" href="../static/css/index.css" />
   <link rel="stylesheet" href="../static/css/footer.css" />
-  <link rel="stylesheet" href="../static/css/early.css"/>
-  <link rel="stylesheet" href="../static/css/goodsorder.css"/>
-  <link rel="stylesheet" href="../static/css/board.css"/>
-   <link rel="stylesheet" href="../static/css/board.css"/>
+  <link rel="stylesheet" href="../static\css\board.css" />
+  <link rel="stylesheet" href="../static\css\goodsorder.css" />
 </head>
+
 <body>
   <header>
     <div class="header-inner">
-      <h1>이른 아침</h1>
+      <h1><a style="text-decoration-line: none;" href="./index.html">이른 아침</h1></a>
+
       <nav>
-        <a href="./early_morning_coffee.html">회사소개</a>
+
+        <a href="./early_morning_coffee.html">아침을 여는 이야기</a>
         <a href="./submenu.html">원두/생두</a>
         <a href="./goods_order.html">과일/시럽</a>
-        <a href="./coffebeen_order.html">커피용품</a>
-        <a href="./etc_order.html">기타용품</a>
+        <a href="./etc_order.html">커피용품</a>
+        <a href="./coffebeen_order.html">기타용품</a>
         <a href="./findstore.html">매장 찾기</a>
       </nav>
+
       <div class="top-right-menu">
         <a href="./login.html">로그인</a>
         <span class="divider">|</span>
@@ -37,80 +40,47 @@
     </div>
   </header>
 
-  <main>
-    <div class="board-container">
-      <div class="board-header">
-        <h2>자유게시판</h2>
-        <div class="search-box">
-          <input type="text" placeholder="검색어를 입력하세요" />
-          <button>검색</button>
-        </div>
-        <a href="#" class="write-btn">글쓰기</a>
-      </div>
-      <div class="board-table-wrap">
-        <table class="board-table">
-          <thead>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>작성일</th>
-              <th>조회</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="num-brown">5</td>
-              <td><span class="title-black">이른아침에 마시는 첫 커피</span></td>
-              <td class="user-coffee">김아라</td>
-              <td class="date-light">2025-06-05</td>
-              <td class="view-orange">27</td>
-            </tr>
-            <tr>
-              <td class="num-orange">4</td>
-              <td><span class="title-black">원두 추천 부탁드려요</span></td>
-              <td class="user-brown">박현수</td>
-              <td class="date-light">2025-06-04</td>
-              <td class="view-coffee">34</td>
-            </tr>
-            <tr>
-              <td class="num-coffee">3</td>
-              <td><span class="title-black">배송 빠르고 포장 좋아요</span></td>
-              <td class="user-orange">이진우</td>
-              <td class="date-light">2025-06-03</td>
-              <td class="view-orange">18</td>
-            </tr>
-            <tr>
-              <td class="num-orange">2</td>
-              <td><span class="title-black">오늘의 추천 메뉴</span></td>
-              <td class="user-coffee">정지현</td>
-              <td class="date-light">2025-06-03</td>
-              <td class="view-brown">22</td>
-            </tr>
-            <tr>
-              <td class="num-brown">1</td>
-              <td><span class="title-black">첫 방문 인사드립니다.</span></td>
-              <td class="user-orange">최하은</td>
-              <td class="date-light">2025-06-02</td>
-              <td class="view-coffee">19</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-  
-    </div>
-  </main>
 
+  <main>
+    <h2 style="color: #2d4739; margin-bottom: 20px;">문의 게시판</h2>
+    <div class="board-header">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="제목 또는 작성자로 검색">
+        <button onclick="searchPosts()">검색</button>
+      </div>
+      <a href="board_write.html" class="write-btn">글쓰기</a>
+    </div>
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th style="width: 10%;">번호</th>
+          <th style="width: 50%;">제목</th>
+          <th style="width: 15%;">작성자</th>
+          <th style="width: 15%;">작성일</th>
+          <th style="width: 10%;">조회수</th>
+        </tr>
+      </thead>
+      <tbody id="board-body"></tbody>
+    </table>
+    <div class="pagination" id="pagination"></div>
+  </main>
   <footer>
     <div class="footer-inner">
       <strong>상호명</strong> : 수제커피브루 &nbsp; | &nbsp;
       <strong>주소</strong> : 경기도 커피시 향기구 아라비카로 100 &nbsp; | &nbsp;
       <strong>대표자</strong> : 김커피 &nbsp; | &nbsp;
       <strong>사업자등록번호</strong> : 123-45-67890 &nbsp; | &nbsp;
-      <strong>대표전화</strong> : 02-1234-5678<br/>
+      <strong>대표전화</strong> : 02-1234-5678<br />
       &copy; 2025 SUJAE COFFEE BREW. All rights reserved.
     </div>
   </footer>
+
+
+
   <script src="../static/js/board.js"></script>
+
+
+
 </body>
+
 </html>

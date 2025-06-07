@@ -1,20 +1,5 @@
-
 let currentItem = null;
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// 장바구니 항목 수 업데이트
-function updateCartCount() {
-    const cartCount = document.querySelector('.cart-count');
-    if (cartCount) {
-        cartCount.textContent = cart.length;
-    }
-}
-
-// 장바구니 UI 갱신
-function updateCartUI() {
-    displayCartItems();
-    updateCartCount();
-}
 
 function openAddToCartModal(name, basePrice) {
     currentItem = { name, basePrice };
@@ -47,11 +32,10 @@ function addToCart() {
     alert(`${item.name}이(가) 장바구니에 추가되었습니다.`);
     closeAddToCartModal();
     openCartModal();
-    updateCartCount();
 }
 
 function openCartModal() {
-    updateCartUI();
+    displayCartItems();
     document.getElementById('cart-modal').style.display = 'flex';
 }
 
@@ -74,23 +58,23 @@ function displayCartItems() {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
-            <div class="cart-item-details">
-                <strong>${item.name}</strong><br>
-                온도: ${item.temp}, 샷 추가: ${item.extraShot ? '예' : '아니오'}, 
-                시럽: ${item.syrup === 'none' ? '없음' : item.syrup}<br>
-                수량: <input type="number" min="1" value="${item.quantity}" onchange="updateCartItemQuantity('${item.itemId}', this.value)">
-                가격: ₩${itemTotal.toLocaleString()}
-            </div>
-            <div class="cart-item-actions">
-                <button class="btn" onclick="removeCartItem('${item.itemId}')">삭제</button>
-            </div>
-        `;
+                    <div class="cart-item-details">
+                        <strong>${item.name}</strong><br>
+                        온도: ${item.temp}, 샷 추가: ${item.extraShot ? '예' : '아니오'}, 
+                        시럽: ${item.syrup === 'none' ? '없음' : item.syrup}<br>
+                        수량: <input type="number" min="1" value="${item.quantity}" onchange="updateCartItemQuantity('${item.itemId}', this.value)">
+                        가격: ₩${itemTotal}
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="btn" onclick="removeCartItem('${item.itemId}')">삭제</button>
+                    </div>
+                `;
         cartItems.appendChild(cartItem);
     });
 
     const shipping = subtotal >= 30000 ? 0 : 3000;
-    document.getElementById('cart-total').textContent = (subtotal + shipping).toLocaleString();
-    document.getElementById('cart-shipping').textContent = shipping.toLocaleString();
+    document.getElementById('cart-total').textContent = subtotal + shipping;
+    document.getElementById('cart-shipping').textContent = shipping;
 }
 
 function updateCartItemQuantity(itemId, quantity) {
@@ -98,22 +82,14 @@ function updateCartItemQuantity(itemId, quantity) {
     if (item) {
         item.quantity = parseInt(quantity) || 1;
         localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartUI();
+        displayCartItems();
     }
-}
-
-function clearCart() {
-    console.log("장바구니 전체 삭제 시도");
-    cart = [];
-    localStorage.removeItem("cart");
-    updateCartUI();    
-    console.log("장바구니 전체 삭제 완료");
 }
 
 function removeCartItem(itemId) {
     cart = cart.filter(i => i.itemId !== itemId);
     localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartUI();
+    displayCartItems();
 }
 
 function validateOrderForm() {
@@ -170,7 +146,27 @@ async function submitOrder() {
         createdAt: new Date().toISOString()
     };
 
+    // Toss Payments API 호출 (모의)
     try {
+        // 실제 API 호출 예시 (키 필요)
+        /*
+        const response = await fetch('https://api.tosspayments.com/v1/payments', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic YOUR_TOSS_API_KEY',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                amount: order.total,
+                orderId: order.orderId,
+                orderName: '수제커피브루 주문',
+                customerName: order.name
+            })
+        });
+        const result = await response.json();
+        if (!result.success) throw new Error('결제 실패');
+        */
+
         // 모의 결제
         console.log('Toss Payments API 호출 시뮬레이션:', {
             amount: order.total,
@@ -187,11 +183,10 @@ async function submitOrder() {
         // 장바구니 초기화
         cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
 
-        alert(`결제 완료! 주문 번호: ${order.orderId}\n총액: ₩${order.total.toLocaleString()}`);
+        alert(`결제 완료! 주문 번호: ${order.orderId}\n총액: ₩${order.total}`);
         closeCartModal();
-        window.location.href = './order_page.html';
+        window.location.href = './07_teamproj_order_page.html';
     } catch (error) {
         console.error('결제 오류:', error);
         alert('결제에 실패했습니다. 다시 시도해주세요.');
@@ -201,14 +196,10 @@ async function submitOrder() {
 document.getElementById('quantity').addEventListener('input', () => {
     document.getElementById('quantity').value = Math.max(1, parseInt(document.getElementById('quantity').value) || 1);
 });
-document.getElementById('extra-shot').addEventListener('change', () => {});
-document.getElementById('syrup').addEventListener('change', () => {});
-document.querySelectorAll('input[name="temp"]').forEach(radio => radio.addEventListener('change', () => {}));
+document.getElementById('extra-shot').addEventListener('change', () => { });
+document.getElementById('syrup').addEventListener('change', () => { });
+document.querySelectorAll('input[name="temp"]').forEach(radio => radio.addEventListener('change', () => { }));
+
 document.getElementById('cart-phone').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') submitOrder();
-});
-
-// 페이지 로드 시 장바구니 카운트 초기화
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
 });

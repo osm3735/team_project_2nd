@@ -26,7 +26,7 @@ body {
 
 /* 2. 헤더, 메인, 푸터가 세로로 쌓이게끔 만듭니다 */
 header {
-  background-color: #D2691E;
+  background-color: #3E2723;
   /* 오렌지 브라운 계열 배경 */
   color: #000000;
   /* 필요한 경우 높이 고정이나 여백을 추가하세요 */
@@ -48,7 +48,7 @@ main {
 
 /* 3. 푸터는 문서 흐름대로 위치하도록 단순히 스타일만 적용 */
 footer {
-  background-color: #D2691E;
+  background-color: #3E2723;
   /* 오렌지 브라운 계열 배경 */
   color: #000000;
   /* 검정색 텍스트 */
@@ -428,9 +428,9 @@ footer {
 
 /* 1. 푸터 고정 및 배경/텍스트 색상 설정 */
 footer {
-  background-color: #D2691E;
+  background-color: #3E2723;
   /* 오렌지 브라운 계열 배경 */
-  color: #000000 !important;
+  color:white;  
   /* 모든 텍스트를 검정색으로 강제 */
   text-align: center;
   /* 중앙 정렬 */
@@ -458,7 +458,7 @@ footer .footer-inner {
   /* 텍스트가 중앙에 모이도록 inline-block 사용 */
   line-height: 1.4;
   /* 줄 간격 */
-  color: #000000 !important;
+  color: #fff !important;
   /* 내부 모든 글자 검정색 */
   font-size: 0.9rem;
   /* 폰트 크기 재확인 */
@@ -467,7 +467,7 @@ footer .footer-inner {
 /* 3. 푸터에 포함된 <strong>이나 <span>도 검정색으로 유지 */
 footer .footer-inner strong,
 footer .footer-inner span {
-  color: #000000 !important;
+  color: #fff; 
 }
 
 /* 4. 푸터가 콘텐츠를 가리지 않도록 하단 여백 확보 */

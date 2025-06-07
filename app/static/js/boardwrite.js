@@ -1,85 +1,55 @@
-var gk_isXlsx = false;
-var gk_xlsxFileLookup = {};
-var gk_fileData = {};
-function filledCell(cell) {
-    return cell !== '' && cell != null;
-}
-function loadFileData(filename) {
-    if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-        try {
-            var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-            var firstSheetName = workbook.SheetNames[0];
-            var worksheet = workbook.Sheets[firstSheetName];
-
-            // Convert sheet to JSON to filter blank rows
-            var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-            // Filter out blank rows (rows where all cells are empty, null, or undefined)
-            var filteredData = jsonData.filter(row => row.some(filledCell));
-
-            // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-            var headerRowIndex = filteredData.findIndex((row, index) =>
-                row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-            );
-            // Fallback
-            if (headerRowIndex === -1 || headerRowIndex > 25) {
-                headerRowIndex = 0;
-            }
-
-            // Convert filtered JSON back to CSV
-            var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-            csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-            return csv;
-        } catch (e) {
-            console.error(e);
-            return "";
-        }
-    }
-    return gk_fileData[filename] || "";
-}
 function savePost() {
-            const title = document.getElementById('post-title').value.trim();
-            const author = document.getElementById('post-author').value.trim();
-            const password = document.getElementById('post-password').value.trim();
-            const content = document.getElementById('post-content').value.trim();
+  const title = document.getElementById("post-title").value.trim();
+  const author = document.getElementById("post-author").value.trim();
+  const password = document.getElementById("post-password").value.trim();
+  const content = document.getElementById("post-content").value.trim();
 
-            if (!title || !author || !password || !content) {
-                alert('제목, 작성자, 삭제 암호, 내용을 모두 입력해주세요.');
-                return;
-            }
+  // 필수 입력값 확인
+  if (!title || !author || !password || !content) {
+    alert("모든 필드를 입력해주세요.");
+    return;
+  }
 
-            const posts = JSON.parse(localStorage.getItem('posts')) || [];
-            const post = {
-                id: Date.now().toString(),
-                title,
-                author,
-                password, // 암호 저장
-                content,
-                createdAt: new Date().toISOString(),
-                views: 0
-            };
+  // 게시글 목록 불러오기
+  const posts = JSON.parse(localStorage.getItem("posts") || "[]");
 
-            posts.unshift(post);
-            localStorage.setItem('posts', JSON.stringify(posts));
-            console.log('Post saved:', post);
-            console.log('All posts:', posts);
-            alert('게시글이 작성되었습니다.');
-            location.href = 'board.html';
-        }
+  // 날짜 포맷: YYYY-MM-DD
+  const formattedDate = new Date().toISOString().split("T")[0];
 
-      
+  // 간단한 해시 함수 (보안 강화 버전은 서버에서 처리해야 함)
+  const hashPassword = btoa(password); // Base64 인코딩
+
+  // 새 게시글 객체 생성
+  const newPost = {
+    id: crypto.randomUUID(),  // UUID 사용 (modern browsers)
+    title,
+    author,
+    password: hashPassword,
+    content,
+    date: formattedDate,
+    views: 0,
+  };
+
+  // 저장
+  posts.push(newPost);
+  localStorage.setItem("posts", JSON.stringify(posts));
+
+  alert("게시글이 저장되었습니다.");
+  window.location.href = "board.html";
+}
+
 function cancelWrite() {
-    const title = document.getElementById('post-title').value;
-    const author = document.getElementById('post-author').value;
-    const password = document.getElementById('post-password').value;
-    const content = document.getElementById('post-content').value;
-
-    // 모든 입력 필드가 비어있는지 확인
-    if (!title && !author && !password && !content) {
-        window.location.href = './board.html';
-    } else {
-        // 입력된 데이터가 있을 경우 확인 메시지 표시
-        if (confirm('입력한 내용이 저장되지 않습니다. 취소하고 이동하시겠습니까?')) {
-            window.location.href = './board.html';
-        }
-    }
-}         
+  const confirmCancel = confirm("작성을 취소하시겠습니까? 작성 중인 내용은 저장되지 않습니다.");
+  if (confirmCancel) {
+    window.location.href = "board.html";
+  }
+}
+const newPost = {
+  id: Date.now().toString(),
+  title,
+  author,
+  password: btoa(password),  // Base64 인코딩
+  content,
+  date: new Date().toLocaleDateString('ko-KR'),
+  views: 0,
+};

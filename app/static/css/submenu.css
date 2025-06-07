@@ -1,271 +1,88 @@
-/* ───────────────────────────────────────────────────────────────────────── */
-/*                            기본 리셋 및 폰트 설정                             */
-/* ───────────────────────────────────────────────────────────────────────── */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+ body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #fefefe;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
 
-html, body {
-  width: 100%;
-  font-family: 'Noto Sans KR', 'Roboto', sans-serif;
-  background-color: #f9f6f2;    /* 연한 베이지 계열 배경 */
-  color: #362106;               /* 본문 기본 다크 브라운 텍스트 */
-  line-height: 1.8;
-}
+    .main-title {
+      font-size: 2.5rem;
+      color: #3E2723;
+      margin: 60px auto 40px;
+      text-align: center;
+    }
 
-/* ───────────────────────────────────────────────────────────────────────── */
-/*                          헤더(Header) 스타일                                */
-/* ───────────────────────────────────────────────────────────────────────── */
-.main-header {
-  background-color: #3E2723; /* 진한 브라운 배경 */
-  color: #FFFFFF;            /* 헤더 텍스트(아이콘/텍스트) 흰색 */
-  padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
 
-.header-inner {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 16px;  /* 좌우 패딩 */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
 
-/* 제목(로고) */
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #FFFFFF; /* 흰색으로 고정 */
-  cursor: pointer;
-}
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
 
-/* 네비게이션 링크 */
-.main-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
 
-.main-nav a {
-  font-size: 0.95rem;
-  color: #FFFFFF;         /* 흰색으로 고정 */
-  transition: color 0.2s;
-}
-.main-nav a:hover {
-  color: #FFD675;         /* 살짝 밝은 오렌지 계열 호버 컬러 */
-}
+    .card-desc {
+      padding: 20px;
+      text-align: center;
+      border:1px solid red;
+    }
 
-/* ───────────────────────────────────────────────────────────────────────── */
-/*                          “책”처럼 페이지 레이아웃                           */
-/* ───────────────────────────────────────────────────────────────────────── */
-.beans-wrap {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 48px 16px 0 16px; /* 하단 padding 0으로, 푸터가 바로 붙도록 */
-}
+    .card-desc h3 {
+      font-size: 1.2rem;
+      color: #5D4037;
+      margin-bottom: 10px;
+    }
 
-.beans-main-title {
-  text-align: center;
-  color: #A15D00;   /* 진한 오렌지톤 */
-  font-size: 2.3rem;
-  font-weight: 800;
-  margin-bottom: 44px;
-  letter-spacing: 2px;
-  text-shadow: 0 2px 8px rgba(160, 90, 30, 0.07);
-}
+    .card-desc p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
 
-.beans-card-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 32px 18px;
-  justify-items: center;
-}
+    .card-desc button {
+      background-color: #3E2723;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-/* ───────────────────────────────────────────────────────────────────────── */
-/*                            Bean 카드 스타일                                 */
-/* ───────────────────────────────────────────────────────────────────────── */
-.bean-card {
-  width: 100%;
-  background: #FFFFFF;    /* 흰색 카드 배경 */
-  border-radius: 22px;
-  box-shadow: 0 5px 22px rgba(125, 90, 30, 0.11), 0 1px 6px rgba(110, 80, 50, 0.03);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  border: 1.4px solid #F6E7D3; /* 연한 크림 계열 테두리 */
-  min-height: 355px;
-  transition: box-shadow 0.17s, transform 0.14s;
-}
-.bean-card:hover {
-  box-shadow: 0 13px 32px rgba(160, 110, 50, 0.15), 0 8px 20px rgba(120, 80, 40, 0.06);
-  transform: translateY(-7px) scale(1.02);
-  border-color: #E7CCA7; /* 호버 시 테두리 살짝 진하게 */
-}
+    .card-desc button:hover {
+      background-color: #5D4037;
+    }
 
-.bean-img {
-  width: 100%;
-  height: 110px;
-  object-fit: cover;
-  background: #F8F4ED;   /* 아주 연한 베이지 배경 */
-  border-bottom: 1px solid #F3E4CE; /* 연한 크림 계열 선 */
-  display: block;
-}
-
-.bean-card-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 18px 10px 13px 10px;
-  gap: 4px;
-}
-
-.bean-card-body h3 {
-  font-size: 1.02rem;
-  color: #332012; /* 진한 브라운(카드 제목) */
-  font-weight: bold;
-  margin-bottom: 2px;
-  text-align: center;
-  letter-spacing: 0.15px;
-  line-height: 1.3;
-}
-
-.bean-origin,
-.bean-notes {
-  font-size: 0.94rem;
-  color: #5A3710; /* 진한 브라운 계열로 변경하여 가독성 강화 */
-  font-weight: 500;
-  margin-bottom: 1px;
-  text-align: center;
-}
-
-.bean-desc {
-  font-size: 0.93rem;
-  color: #5A3710;  /* 진한 브라운 계열 */
-  text-align: center;
-  margin: 8px 0 0 0;
-  line-height: 1.5;
-  min-height: 34px;
-}
-
-/* ───────────────────────────────────────────────────────────────────────── */
-/*                          가격·버튼 영역 스타일                              */
-/* ───────────────────────────────────────────────────────────────────────── */
-.bean-actions {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 15px;
-}
-.bean-price {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #E26E09;    /* 오렌지 계열 가격 텍스트 */
-  letter-spacing: 0.5px;
-  min-width: 60px;
-  text-align: right;
-}
-
-.bean-cart-btn,
-.bean-buy-btn {
-  font-size: 0.93rem;
-  font-weight: 600;
-  padding: 0.44em 1.13em;
-  border: none;
-  border-radius: 18px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(255, 182, 65, 0.08);
-  outline: none;
-  margin-left: 0.1em;
-  margin-right: 0.1em;
-  transition: background 0.14s, transform 0.1s, color 0.13s;
-}
-
-.bean-cart-btn {
-  background: linear-gradient(92deg, #FFF3DB 0%, #FFE0A1 100%);
-  color: #7C430C;    /* 브라운 계열 버튼 텍스트 */
-  border: 1.1px solid #F3CB77;
-}
-.bean-cart-btn:hover,
-.bean-cart-btn:focus {
-  background: linear-gradient(92deg, #FFD996 0%, #FFC04B 100%);
-  color: #FFFFFF;    /* 호버 시 버튼 텍스트는 흰색 */
-  transform: translateY(-1px) scale(1.04);
-}
-
-.bean-buy-btn {
-  background: linear-gradient(95deg, #FF9847 0%, #F57E29 100%);
-  color: #FFFFFF;
-  border: 1.1px solid #FFC07E;
-}
-.bean-buy-btn:hover,
-.bean-buy-btn:focus {
-  background: linear-gradient(90deg, #EF791E 0%, #C95715 100%);
-  color: #FFFFFF;
-  transform: translateY(-1px) scale(1.04);
-}
-
-/* ───────────────────────────────────────────────────────────────────────── */
-/*                             반응형 설정                                    */
-/* ───────────────────────────────────────────────────────────────────────── */
-@media (max-width: 1280px) {
-  .beans-card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 980px) {
-  .beans-card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 800px) {
-  .beans-card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .bean-img {
-    height: 90px;
-  }
-  /* 작은 화면에서는 하단 패딩도 줄여 푸터와 더 가까이 붙도록 */
-  .beans-wrap {
-    padding: 16px 3vw 0 3vw;
-  }
-}
-
-@media (max-width: 540px) {
-  .beans-card-grid {
-    grid-template-columns: 1fr;
-  }
-  .bean-img {
-    height: 66px;
-  }
-  .beans-main-title {
-    font-size: 1.05rem;
-  }
-  .bean-card {
-    min-height: 220px;
-  }
-}
-
-/* ───────────────────────────────────────────────────────────────────────── */
-/*                          Footer(하단 상호명 영역) 스타일                    */
-/* ───────────────────────────────────────────────────────────────────────── */
-
-/* 예시) 푸터 텍스트를 완전 흰색으로 바꾸고 싶으면 아래 주석 해제 */
-/*
-.footer-inner {
-  color: #FFFFFF;
-}
-*/
+    footer {
+      background-color: #3E2723;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }

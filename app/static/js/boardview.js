@@ -1,133 +1,136 @@
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
+// 유틸 함수
+function getPostIdFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id');
+}
 
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
+// 게시글 로드
+let posts = JSON.parse(localStorage.getItem('posts')) || [];
+let currentPost = null;
+let isEditing = false;
 
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
+function renderPost() {
+  const container = document.getElementById('post-details');
+  if (!currentPost) {
+    container.innerHTML = '<p>게시글을 찾을 수 없습니다.</p>';
+    return;
+  }
 
-          const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get('id');
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+  if (isEditing) {
+    container.innerHTML = `
+      <label>제목</label><br>
+      <input type="text" id="edit-title" value="${escapeHtml(currentPost.title)}" style="width:100%;"><br><br>
+      <label>내용</label><br>
+      <textarea id="edit-content" style="width:100%; height:200px;">${escapeHtml(currentPost.content)}</textarea><br><br>
+      <button onclick="saveEdit()">저장</button>
+      <button onclick="cancelEdit()">취소</button>
+    `;
+  } else {
+    container.innerHTML = `
+      <h3>${escapeHtml(currentPost.title)}</h3>
+      <p><strong>작성자:</strong> ${escapeHtml(currentPost.author)} | <strong>작성일:</strong> ${new Date(currentPost.createdAt).toLocaleDateString('ko-KR')} | <strong>조회수:</strong> ${currentPost.views}</p>
+      <hr>
+      <p>${escapeHtml(currentPost.content).replace(/\n/g, "<br>")}</p>
+    `;
+  }
+}
 
-        console.log('Post ID from URL:', postId);
-        console.log('Posts loaded:', posts);
+function increaseViews() {
+  currentPost.views = (currentPost.views || 0) + 1;
+  updatePostData();
+}
 
-        posts = posts.map(post => ({
-            ...post,
-            id: String(post.id),
-            views: post.views || 0,
-            password: post.password || ''
-        }));
-        localStorage.setItem('posts', JSON.stringify(posts));
+function updatePostData() {
+  const index = posts.findIndex(p => p.id === currentPost.id);
+  if (index !== -1) {
+    posts[index] = currentPost;
+    localStorage.setItem('posts', JSON.stringify(posts));
+  }
+}
 
-        function loadPost() {
-            if (!postId) {
-                document.getElementById('post-details').innerHTML = '<p>잘못된 게시글 ID입니다.</p>';
-                console.log('Error: No postId provided');
-                return;
-            }
+// 수정 기능
+function toggleEditMode() {
+  if (!currentPost) return;
+  isEditing = true;
+  renderPost();
+}
 
-            const post = posts.find(p => p.id === postId || p.id === String(postId));
-            console.log('Found post:', post);
+function saveEdit() {
+  const newTitle = document.getElementById('edit-title').value.trim();
+  const newContent = document.getElementById('edit-content').value.trim();
 
-            if (!post) {
-                document.getElementById('post-details').innerHTML = '<p>게시글을 찾을 수 없습니다. 게시글이 삭제되었거나 존재하지 않습니다.</p>';
-                console.log('Error: Post not found for ID', postId);
-                return;
-            }
+  if (!newTitle || !newContent) {
+    alert('제목과 내용을 모두 입력해주세요.');
+    return;
+  }
 
-            post.views = (post.views || 0) + 1;
-            localStorage.setItem('posts', JSON.stringify(posts));
-            console.log('Updated post with views:', post);
+  currentPost.title = newTitle;
+  currentPost.content = newContent;
+  isEditing = false;
+  updatePostData();
+  renderPost();
+}
 
-            document.getElementById('post-details').innerHTML = `
-                <label for="post-title">제목</label>
-                <input type="text" id="post-title" value="${post.title || '제목 없음'}" readonly>
-                <label for="post-author">작성자</label>
-                <input type="text" id="post-author" value="${post.author || '익명'}" readonly>
-                <label for="post-date">작성일</label>
-                <input type="text" id="post-date" value="${new Date(post.createdAt).toLocaleDateString('ko-KR')}" readonly>
-                <label for="post-views">조회수</label>
-                <input type="text" id="post-views" value="${post.views || 0}" readonly>
-                <label for="post-content">내용</label>
-                <textarea id="post-content" readonly>${post.content || ''}</textarea>
-            `;
-        }
+function cancelEdit() {
+  isEditing = false;
+  renderPost();
+}
 
-        function openDeleteAuth() {
-            document.getElementById('modal-overlay').style.display = 'block';
-            document.getElementById('delete-auth-panel').classList.add('open');
-            document.getElementById('delete-password').value = '';
-        }
+// 삭제 기능
+function openDeleteAuth() {
+  document.getElementById('modal-overlay').style.display = 'flex';
+  document.getElementById('delete-password').value = '';
+}
 
-        function closeDeleteAuth() {
-            document.getElementById('modal-overlay').style.display = 'none';
-            document.getElementById('delete-auth-panel').classList.remove('open');
-        }
+function closeDeleteAuth() {
+  document.getElementById('modal-overlay').style.display = 'none';
+}
 
-        function verifyAndDelete() {
-            const inputPassword = document.getElementById('delete-password').value.trim();
-            if (!inputPassword) {
-                alert('암호를 입력해주세요.');
-                return;
-            }
+function verifyAndDelete() {
+  const inputPw = document.getElementById('delete-password').value.trim();
+  if (!inputPw) {
+    alert('비밀번호를 입력해주세요.');
+    return;
+  }
 
-            const post = posts.find(p => p.id === postId || p.id === String(postId));
-            if (!post) {
-                alert('게시글을 찾을 수 없습니다.');
-                closeDeleteAuth();
-                return;
-            }
+  if (inputPw === atob(currentPost.password)) {
+    posts = posts.filter(p => p.id !== currentPost.id);
+    localStorage.setItem('posts', JSON.stringify(posts));
+    alert('게시글이 삭제되었습니다.');
+    location.href = 'board.html';
+  } else {
+    alert('비밀번호가 일치하지 않습니다.');
+  }
+}
 
-            if (post.password !== inputPassword) {
-                alert('암호가 일치하지 않습니다.');
-                return;
-            }
+function closePost() {
+  location.href = 'board.html';
+}
 
-            if (!confirm('게시글을 삭제하시겠습니까?')) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const postId = getPostIdFromURL();
+  if (!postId) {
+    alert('게시글 ID가 없습니다.');
+    location.href = 'board.html';
+    return;
+  }
 
-            posts = posts.filter(p => p.id !== postId && p.id !== String(postId));
-            localStorage.setItem('posts', JSON.stringify(posts));
-            console.log('Post deleted, remaining posts:', posts);
-            alert('게시글이 삭제되었습니다.');
-            closeDeleteAuth();
-            location.href = 'board.html';
-        }
+  currentPost = posts.find(p => p.id === postId);
+  if (!currentPost) {
+    alert('게시글을 찾을 수 없습니다.');
+    location.href = 'board.html';
+    return;
+  }
 
-        function closePost() {
-            location.href = 'board.html';
-        }
-
-        loadPost();
+  increaseViews();
+  renderPost();
+});

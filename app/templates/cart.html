@@ -4,26 +4,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>장바구니 | 이른아침</title>
+  <title>장바구니 | 수제커피브루</title>
+
+  <!-- 공통/헤더/인덱스/푸터/어린아침 CSS -->
   <link rel="stylesheet" href="../static/css/common.css" />
   <link rel="stylesheet" href="../static/css/header.css" />
-  <link rel="stylesheet" href="../static/css/cart.css" />
+  <link rel="stylesheet" href="../static/css/index.css" />
   <link rel="stylesheet" href="../static/css/footer.css" />
+  <link rel="stylesheet" href="../static/css/orderform.css" />
+
+  <!-- 장바구니 전용 스타일 -->
+  <link rel="stylesheet" href="../static/css/cart.css" />
 </head>
 
 <body>
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
+  <!--                              상단 헤더 / 네비게이션                            -->
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
   <header>
     <div class="header-inner">
-      <h1>이른 아침</h1>
+      <h1><a style="text-decoration-line: none;" href="./index.html">이른 아침</h1></a>
+
       <nav>
-        <a href="./hoom.html">Home</a>
-        <a href="./early_morning_coffee.html">아침을 여는 이야기</a>
+        <a href="./Early_Morning_Coffee.html">회사소개</a>
         <a href="./submenu.html">원두/생두</a>
         <a href="./goods_order.html">과일/시럽</a>
         <a href="./etc_order.html">커피용품</a>
         <a href="./coffebeen_order.html">기타용품</a>
         <a href="./findstore.html">매장 찾기</a>
       </nav>
+
       <div class="top-right-menu">
         <a href="./login.html">로그인</a>
         <span class="divider">|</span>
@@ -35,24 +45,28 @@
       </div>
     </div>
   </header>
-  <main class="cart-container">
 
-    <!-- ───────────────────────────────────────────────────────────────────────── -->
-    <!--                                장바구니 페이지                                 -->
-    <!-- ───────────────────────────────────────────────────────────────────────── -->
-    <section class="cart-page-wrapper">
-      <h2 class="section-title" style="text-align:center;">🛒 나의 장바구니</h2>
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
+  <!--                                장바구니 페이지                                 -->
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
+  <section class="cart-page-wrapper">
+    <h2 class="section-title">🛒 나의 장바구니</h2>
+
+    <main class="cart-container">
       <p class="empty-cart-msg">장바구니에 담긴 상품이 없습니다.</p>
       <div id="cart-items"></div>
+
       <div class="cart-summary">
         <p>총 합계: <strong id="total-price">₩0</strong></p>
         <button class="checkout" id="checkout-btn">💳 결제하기</button>
       </div>
+    </main>
+  </section>
 
-    </section>
+  <!-- ──              -->
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
 
-  </main>
-  <footer>
     <div class="footer-inner">
       <strong>상호명</strong> : 수제커피브루 &nbsp; | &nbsp;
       <strong>주소</strong> : 경기도 커피시 향기구 아라비카로 100 &nbsp; | &nbsp;
@@ -62,48 +76,42 @@
       &copy; 2025 SUJAE COFFEE BREW. All rights reserved.
     </div>
   </footer>
-  <script src="../static/js/board.js"></script>
-</body>
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
+  <!--                            장바구니 기능용 JS                                 -->
+  <!-- ───────────────────────────────────────────────────────────────────────── -->
+  <script>
+    const CART_KEY = 'shoppingCart';
 
-</html>
-
-
-<!-- ───────────────────────────────────────────────────────────────────────── -->
-<!--                            장바구니 기능용 JS                                 -->
-<!-- ───────────────────────────────────────────────────────────────────────── -->
-<script>
-  const CART_KEY = 'shoppingCart';
-
-  function loadCart() {
-    const data = localStorage.getItem(CART_KEY);
-    return data ? JSON.parse(data) : [];
-  }
-
-  function saveCart(cart) {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  }
-
-  function renderCart() {
-    const cartItemsDiv = document.getElementById('cart-items');
-    const emptyMsg = document.querySelector('.empty-cart-msg');
-    const cart = loadCart();
-
-    if (cart.length === 0) {
-      emptyMsg.style.display = 'block';
-      cartItemsDiv.innerHTML = '';
-      updateTotal();
-      return;
-    } else {
-      emptyMsg.style.display = 'none';
+    function loadCart() {
+      const data = localStorage.getItem(CART_KEY);
+      return data ? JSON.parse(data) : [];
     }
 
-    cartItemsDiv.innerHTML = '';
-    cart.forEach((item, index) => {
-      const itemDiv = document.createElement('div');
-      itemDiv.className = 'cart-item';
-      itemDiv.dataset.price = item.price;
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
 
-      itemDiv.innerHTML = `
+    function renderCart() {
+      const cartItemsDiv = document.getElementById('cart-items');
+      const emptyMsg = document.querySelector('.empty-cart-msg');
+      const cart = loadCart();
+
+      if (cart.length === 0) {
+        emptyMsg.style.display = 'block';
+        cartItemsDiv.innerHTML = '';
+        updateTotal();
+        return;
+      } else {
+        emptyMsg.style.display = 'none';
+      }
+
+      cartItemsDiv.innerHTML = '';
+      cart.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.dataset.price = item.price;
+
+        itemDiv.innerHTML = `
           <img src="${item.img}" alt="${item.name}">
           <div class="item-info">
             <h3>${item.name}</h3>
@@ -116,63 +124,63 @@
           </div>
           <button class="remove" data-index="${index}">삭제</button>
         `;
-      cartItemsDiv.appendChild(itemDiv);
-    });
-
-    document.querySelectorAll('.cart-item .plus').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.dataset.index, 10);
-        changeQuantity(idx, +1);
+        cartItemsDiv.appendChild(itemDiv);
       });
-    });
 
-    document.querySelectorAll('.cart-item .minus').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.dataset.index, 10);
-        changeQuantity(idx, -1);
+      document.querySelectorAll('.cart-item .plus').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.index, 10);
+          changeQuantity(idx, +1);
+        });
       });
-    });
 
-    document.querySelectorAll('.cart-item .remove').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.dataset.index, 10);
-        removeItem(idx);
+      document.querySelectorAll('.cart-item .minus').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.index, 10);
+          changeQuantity(idx, -1);
+        });
       });
+
+      document.querySelectorAll('.cart-item .remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.index, 10);
+          removeItem(idx);
+        });
+      });
+
+      updateTotal();
+    }
+
+    function changeQuantity(index, delta) {
+      const cart = loadCart();
+      cart[index].qty = Math.max(1, cart[index].qty + delta);
+      saveCart(cart);
+      renderCart();
+    }
+
+    function removeItem(index) {
+      const cart = loadCart();
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+    }
+
+    function updateTotal() {
+      const totalPriceElem = document.getElementById('total-price');
+      const cart = loadCart();
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+      });
+      totalPriceElem.textContent = `₩${total.toLocaleString()}`;
+    }
+
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      window.location.href = 'payment.html';
     });
 
-    updateTotal();
-  }
-
-  function changeQuantity(index, delta) {
-    const cart = loadCart();
-    cart[index].qty = Math.max(1, cart[index].qty + delta);
-    saveCart(cart);
     renderCart();
-  }
-
-  function removeItem(index) {
-    const cart = loadCart();
-    cart.splice(index, 1);
-    saveCart(cart);
-    renderCart();
-  }
-
-  function updateTotal() {
-    const totalPriceElem = document.getElementById('total-price');
-    const cart = loadCart();
-    let total = 0;
-    cart.forEach(item => {
-      total += item.price * item.qty;
-    });
-    totalPriceElem.textContent = `₩${total.toLocaleString()}`;
-  }
-
-  document.getElementById('checkout-btn').addEventListener('click', () => {
-    window.location.href = 'payment.html';
-  });
-
-  renderCart();
-</script>
+  </script>
 </body>
 
 </html>
