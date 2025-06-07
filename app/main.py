@@ -31,9 +31,9 @@ async def board_write(request: Request):
 async def cart(request: Request):
     return templates.TemplateResponse("cart.html", {"request": request})
 
-@app.get("/coffeebean_order.html", response_class=HTMLResponse)
+@app.get("/coffebean_order.html", response_class=HTMLResponse)
 async def coffeebean_order(request: Request):
-    return templates.TemplateResponse("coffeebean_order.html", {"request": request})
+    return templates.TemplateResponse("coffebean_order.html", {"request": request})
 
 @app.get("/dlivery.html", response_class=HTMLResponse)
 async def dlivery(request: Request):
