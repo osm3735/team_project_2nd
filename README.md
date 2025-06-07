@@ -33,12 +33,12 @@
 project/
 ├ README.md
 ├ index.html
-├ app/        # main.py
-├ template/
-│  └ *.html
-└ static/    # 정적 파일
-   ├ css/
-   ├ js/
-   ├ img/
-   └ json/
+└ app/        # main.py
+    ├ templates/
+    │  └ *.html
+    └ static/    # 정적 파일
+        ├ css/
+        ├ js/
+        ├ img/
+        └ json/
 ```

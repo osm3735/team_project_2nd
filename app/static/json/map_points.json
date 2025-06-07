@@ -9,6 +9,21 @@
       "content": "서울 본점입니다."
     },
     {
+      "map_id": 2,
+      "title": "부산",
+      "description": "부산지점",
+      "lat": 35.1796,
+      "lng": 129.0756,
+      "content": "부산지점입니다."
+    },{
+      "map_id": 3,
+      "title": "제주",
+      "description": "제주지점",
+      "lat": 33.4996,
+      "lng": 126.5312,
+      "content": "제주지점입니다."
+    },
+    {
       "map_id": 5,
       "title": "서울2",
       "description": "서울2지점",
@@ -39,6 +54,14 @@
       "lat": 37.4563,
       "lng": 126.7052,
       "content": "인천지점입니다."
+    },
+    {
+      "map_id": 9,
+      "title": "대전",
+      "description": "대전지점",
+      "lat": 36.3504,
+      "lng": 127.3845,
+      "content": "대전지점입니다."
     },
     {
       "map_id": 13,
