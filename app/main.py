@@ -35,10 +35,6 @@ async def cart(request: Request):
 async def coffeebean_order(request: Request):
     return templates.TemplateResponse("coffeebean_order.html", {"request": request})
 
-@app.get("/coffeebeen.html", response_class=HTMLResponse)
-async def coffeebean(request: Request):
-    return templates.TemplateResponse("coffeebean.html", {"request": request})
-
 @app.get("/dlivery.html", response_class=HTMLResponse)
 async def dlivery(request: Request):
     return templates.TemplateResponse("dlivery.html", {"request": request})
