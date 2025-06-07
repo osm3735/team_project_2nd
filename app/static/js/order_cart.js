@@ -8,14 +8,14 @@ function updateCart() {
     let total = 0;
     cart.forEach((item, index) => {
         total += item.price * item.quantity;
-        cartItems.innerHTML += `
+        cartItems.innerHTML += ```
                     <div>
                         <p>${item.name} - ₩${item.price} x 
                             <button onclick="updateQuantity(${index}, -1)">-</button>
                             ${item.quantity}
                             <button onclick="updateQuantity(${index}, 1)">+</button>
                             <button onclick="removeItem(${index})">삭제</button>
-                    </div>`;
+                    </div>```;
     });
     cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartTotal.textContent = total;

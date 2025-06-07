@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="../static/css/common.css" />
   <link rel="stylesheet" href="../static/css/header.css" />
   <link rel="stylesheet" href="../static/css/index.css" />
-  <link rel="stylesheet" href="../static/css/footer.css" />
   <link rel="stylesheet" href="../static/css/orderform.css" />
 
   <!-- 장바구니 전용 스타일 -->
   <link rel="stylesheet" href="../static/css/cart.css" />
+  
+  <link rel="stylesheet" href="../static/css/footer.css" />
 </head>
 
 <body>
@@ -49,10 +50,9 @@
   <!-- ───────────────────────────────────────────────────────────────────────── -->
   <!--                                장바구니 페이지                                 -->
   <!-- ───────────────────────────────────────────────────────────────────────── -->
-  <section class="cart-page-wrapper">
+  <main class="cart-container">
     <h2 class="section-title">🛒 나의 장바구니</h2>
-
-    <main class="cart-container">
+    <section class="cart-page-wrapper">
       <p class="empty-cart-msg">장바구니에 담긴 상품이 없습니다.</p>
       <div id="cart-items"></div>
 
@@ -60,8 +60,8 @@
         <p>총 합계: <strong id="total-price">₩0</strong></p>
         <button class="checkout" id="checkout-btn">💳 결제하기</button>
       </div>
-    </main>
-  </section>
+    </section>
+  </main>
 
   <!-- ──              -->
   <!-- ───────────────────────────────────────────────────────────────────────── -->
