@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,8 +8,8 @@
   <link rel="stylesheet" href="../static/css/header.css" />
   <link rel="stylesheet" href="../static/css/index.css" />
   <link rel="stylesheet" href="../static/css/footer.css" />
-  <link rel="stylesheet" href="../static\css/boardwrite.css" />
-  <link rel="stylesheet" href="../static\css\goodsorder.css" />
+  <link rel="stylesheet" href="../static\css/boardwrite.css"/>
+ <link rel="stylesheet"  href="../static\css\goodsorder.css"/>
 </head>
 
 <body>
@@ -19,7 +18,7 @@
       <h1><a style="text-decoration-line: none;" href="./index.html">이른 아침</h1></a>
 
       <nav>
-
+        
         <a href="./early_morning_coffee.html">아침을 여는 이야기</a>
         <a href="./submenu.html">원두/생두</a>
         <a href="./goods_order.html">과일/시럽</a>
@@ -31,42 +30,41 @@
       <div class="top-right-menu">
         <a href="./login.html">로그인</a>
         <span class="divider">|</span>
-        <a href="./board.html">게시판</a>
-        <span class="divider">|</span>
-        <a href="./cart.html">장바구니🛒</a>
+       <a href="./join_page.html">회원 가입</a>
+        <span class="divider">|</span>        
+    <a href="./cart.html">장바구니🛒</a>
         <span class="divider">|</span>
         <a href="./dlivery.html">배송현황</a>
       </div>
     </div>
   </header>
-
-  <main>
-    <h2 style="color: #2d4739; margin-bottom: 20px;">게시글 작성</h2>
-    <div class="write-form">
-      <h3>새 게시글 작성</h3>
-      <input type="text" name="title" id="post-title" placeholder="제목">
-      <input type="text" name="writer" id="post-author" placeholder="작성자">
-      <input type="password" name="password" id="post-password" placeholder="삭제 암호">
-      <textarea name="content" id="post-content" placeholder="내용"></textarea>
-      <div class="btn-group">
-        <button onclick="savePost()">작성 완료</button>
-        <button onclick="cancelWrite()">취소</button>
-      </div>
-    </div>
-  </main>
+    
+    <main>
+        <h2 style="color: #2d4739; margin-bottom: 20px;">게시글 작성</h2>
+        <div class="write-form">
+            <h3>새 게시글 작성</h3>
+            <input type="text" name="title"id="post-title" placeholder="제목">
+            <input type="text" name="writer"id="post-author" placeholder="작성자">
+            <input type="password" name="password" id="post-password" placeholder="삭제 암호">
+            <textarea name="content" id="post-content" placeholder="내용"></textarea>
+            <div class="btn-group">
+                <button onclick="savePost()">작성 완료</button>
+                <button onclick="cancelWrite()">취소</button>
+            </div>
+        </div>
+    </main>
 
   <footer>
-    <div class="footer-inner">
-      <strong>상호명</strong> :  이른아침 &nbsp; | &nbsp;
+      <div class="footer-inner">
+      <strong>상호명</strong> : 수제커피브루 &nbsp; | &nbsp;
       <strong>주소</strong> : 경기도 커피시 향기구 아라비카로 100 &nbsp; | &nbsp;
       <strong>대표자</strong> : 김커피 &nbsp; | &nbsp;
       <strong>사업자등록번호</strong> : 123-45-67890 &nbsp; | &nbsp;
       <strong>대표전화</strong> : 02-1234-5678<br />
       &copy; 2025 SUJAE COFFEE BREW. All rights reserved.
     </div>
-  </footer>
+</footer>
 
-  <script src="../static/js/boardwrite.js"></script>
+    <script src="../static/js/boardwrite.js"></script>
 </body>
-
 </html>

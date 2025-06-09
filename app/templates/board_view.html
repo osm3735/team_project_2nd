@@ -9,17 +9,15 @@
   <link rel="stylesheet" href="../static/css/header.css" />
   <link rel="stylesheet" href="../static/css/index.css" />
   <link rel="stylesheet" href="../static/css/footer.css" />
-  <link rel="stylesheet" href="../static\css\boardview.css">
-  <link rel="stylesheet" href="../static\css\goodsorder.css" />
+  <link rel="stylesheet" href="../static/css/boardview.css" />
+  <link rel="stylesheet" href="../static/css/boardwrite.css" />
 </head>
 
 <body>
   <header>
     <div class="header-inner">
-      <h1><a style="text-decoration-line: none;" href="./index.html">이른 아침</h1></a>
-
+      <h1><a href="./index.html" style="text-decoration-line: none;">이른 아침</a></h1>
       <nav>
-
         <a href="./early_morning_coffee.html">아침을 여는 이야기</a>
         <a href="./submenu.html">원두/생두</a>
         <a href="./goods_order.html">과일/시럽</a>
@@ -27,26 +25,35 @@
         <a href="./coffebeen_order.html">기타용품</a>
         <a href="./findstore.html">매장 찾기</a>
       </nav>
-
       <div class="top-right-menu">
-        <a href="./login.html">로그인</a>
-        <span class="divider">|</span>
-        <a href="./board.html">게시판</a>
-        <span class="divider">|</span>
-        <a href="./cart.html">장바구니🛒</a>
-        <span class="divider">|</span>
+        <a href="./login.html">로그인</a><span class="divider">|</span>
+        <a href="./join_page.html">회원 가입</a><span class="divider">|</span>
+        <a href="./cart.html">장바구니🛒</a><span class="divider">|</span>
         <a href="./dlivery.html">배송현황</a>
       </div>
     </div>
   </header>
-    <main style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
-    <h2 style="color: #2d4739;">게시글 상세 보기</h2>
-    <div id="post-details" class="post-details"></div>
 
-    <div class="btn-group" style="margin-top: 20px;">
-      <button onclick="toggleEditMode()">수정</button>
-      <button onclick="openDeleteAuth()">삭제</button>
-      <button onclick="closePost()">목록으로</button>
+  <main>
+    <h2 style="color: #2d4739;">게시글 상세 보기</h2>
+    <div class="write-form">
+      <div id="post-details" class="post-box">
+        container.innerHTML = `
+        <div class="post-box-content">
+          <h3>${escapeHtml(currentPost.title)}</h3>
+          <p><strong>작성자:</strong> ${escapeHtml(currentPost.author)} | <strong>작성일:</strong> ${new
+            Date(currentPost.createdAt).toLocaleDateString('ko-KR')} | <strong>조회수:</strong> ${currentPost.views}</p>
+          <hr>
+          <p>${escapeHtml(currentPost.content).replace(/\n/g, "<br>")}</p>
+        </div>
+
+        <div class="btn-group post-bottom-btns">
+          <button id="edit-toggle-btn" onclick="toggleEditMode()">수정</button>
+          <button onclick="openDeleteAuth()">삭제</button>
+          <button onclick="closePost()">목록으로</button>
+        </div>
+        `;
+      </div>
     </div>
   </main>
 
@@ -54,14 +61,16 @@
     <div class="modal-content">
       <p>삭제하려면 비밀번호를 입력하세요:</p>
       <input type="password" id="delete-password" />
-      <button onclick="verifyAndDelete()">삭제</button>
-      <button onclick="closeDeleteAuth()">취소</button>
+      <div class="btn-group" style="justify-content: flex-end;">
+        <button onclick="verifyAndDelete()">삭제</button>
+        <button onclick="closeDeleteAuth()">취소</button>
+      </div>
     </div>
   </div>
 
   <footer>
     <div class="footer-inner">
-      <strong>상호명</strong> :  이른아침 &nbsp; | &nbsp;
+      <strong>상호명</strong> : 수제커피브루 &nbsp; | &nbsp;
       <strong>주소</strong> : 경기도 커피시 향기구 아라비카로 100 &nbsp; | &nbsp;
       <strong>대표자</strong> : 김커피 &nbsp; | &nbsp;
       <strong>사업자등록번호</strong> : 123-45-67890 &nbsp; | &nbsp;
