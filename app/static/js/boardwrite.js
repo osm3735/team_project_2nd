@@ -21,7 +21,7 @@ function savePost() {
 
   // 새 게시글 객체 생성
   const newPost = {
-    id: crypto.randomUUID(),  // UUID 사용 (modern browsers)
+    id: crypto.randomUUID,  // UUID 사용 (modern browsers)
     title,
     author,
     password: hashPassword,
